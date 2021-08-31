@@ -1,11 +1,7 @@
-import { Header } from 'components';
+import { ILayout } from './interface'
 
-interface IProps {
-  children: React.ElementType;
+const BlankLayout: React.FC<ILayout> = ({ children }) => {
+  return <div>{children}</div>
 }
 
-const BlankLayout: React.FC<IProps> = ({ children }) => {
-  return <div>{children}</div>;
-};
-
-export default BlankLayout;
+export default BlankLayout

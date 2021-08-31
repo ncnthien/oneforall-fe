@@ -1,16 +1,13 @@
-import { Header } from 'components';
+import { ILayout } from './interface'
+import { Header } from 'components'
 
-interface IProps {
-  children: React.ElementType;
-}
-
-const MainLayout: React.FC<IProps> = ({ children }) => {
+const MainLayout: React.FC<ILayout> = ({ children }) => {
   return (
     <div>
       <Header />
       <div>{children}</div>
     </div>
-  );
-};
+  )
+}
 
-export default MainLayout;
+export default MainLayout

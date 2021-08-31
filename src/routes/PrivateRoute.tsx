@@ -1,13 +1,7 @@
-import { Route } from 'react-router-dom';
+import { Route } from 'react-router-dom'
+import { IRoute } from './interface'
 
-interface IProps {
-  path: string;
-  exact: boolean;
-  component: React.ElementType;
-  layout: React.ElementType;
-}
-
-const PrivateRoute: React.FC<IProps> = ({
+const PrivateRoute: React.FC<IRoute> = ({
   path,
   exact,
   component: Component,
@@ -21,7 +15,7 @@ const PrivateRoute: React.FC<IProps> = ({
         <Component />
       </Layout>
     </Route>
-  );
-};
+  )
+}
 
-export default PrivateRoute;
+export default PrivateRoute
