@@ -1,7 +1,7 @@
-import './Main.scss';
+import './Main.scss'
 
 const Main = () => {
-  return <div>home page</div>;
-};
+  return <div className='color-red'>home page</div>
+}
 
-export default Main;
+export default Main

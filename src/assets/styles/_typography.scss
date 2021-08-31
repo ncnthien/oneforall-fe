@@ -1,3 +1,5 @@
+@import './variable';
+
 // font-size
 $sizes: 12, 14, 16, 18, 20, 32;
 
@@ -21,4 +23,25 @@ $sizes: 12, 14, 16, 18, 20, 32;
 @font-face {
   font-family: 'Montserrat-SemiBold';
   src: url('../font/Montserrat-SemiBold.ttf') format('truetype');
+}
+
+.font-light {
+  font-family: 'Montserrat-Light', sans-serif;
+}
+
+.font-bold {
+  font-family: 'Montserrat-SemiBold', sans-serif;
+}
+
+// colors
+.color-white {
+  color: $cl_white;
+}
+
+.color-black {
+  color: $cl_black;
+}
+
+.color-red {
+  color: $cl_red;
 }
