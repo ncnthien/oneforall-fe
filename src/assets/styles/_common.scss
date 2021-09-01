@@ -1,3 +1,6 @@
+@import './variable';
+
 body {
   font-family: 'Montserrat-Regular', sans-serif;
+  color: $cl_price-black;
 }
