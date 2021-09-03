@@ -4,3 +4,17 @@ body {
   font-family: 'Montserrat-Regular', sans-serif;
   color: $cl_price-black;
 }
+
+.overlay {
+  height: 100vh;
+  background: $cl_black;
+  transition: all 0.35s ease-in-out 0s;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 99;
+
+  &.show {
+    visibility: visible;
+    opacity: 0.5;
+  }
+}

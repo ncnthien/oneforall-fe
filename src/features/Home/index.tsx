@@ -1,10 +1,10 @@
-import { MainLayout } from 'Layouts';
-import { Switch, useRouteMatch } from 'react-router-dom';
-import PublicRoute from 'routes/PublicRoute';
-import { Main } from './pages';
+import { MainLayout } from 'layouts'
+import { Switch, useRouteMatch } from 'react-router-dom'
+import PublicRoute from 'routes/PublicRoute'
+import { Main } from './pages'
 
-const Home = () => {
-  const match = useRouteMatch();
+const Home: React.FC = () => {
+  const match = useRouteMatch()
 
   return (
     <Switch>
@@ -15,7 +15,7 @@ const Home = () => {
         layout={MainLayout}
       />
     </Switch>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

@@ -1,10 +1,258 @@
-.header {
-  &__container {
-    padding: 0px 10px;
+@import 'assets/styles/variable.scss';
+@import 'assets/styles/typography.scss';
 
-    .container {
-      & > div {
-        height: 72px;
+%headerHidden {
+  transition: all 0.35s ease-in-out 0s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+%headerShow {
+  visibility: visible;
+  opacity: 1;
+}
+
+.header {
+  background: $cl_white;
+  z-index: 100;
+
+  .container {
+    & > div {
+      height: 72px;
+      background: $cl_white;
+
+      .header-logo {
+        &::after {
+          position: absolute;
+          top: 50%;
+          right: -24px;
+          width: 1px;
+          height: 32px;
+          background: $cl_grey-background;
+          transform: translateY(-50%);
+          content: '';
+        }
+      }
+
+      .header-nav {
+        margin-left: 24px;
+        padding-left: 10px;
+
+        &__item {
+          width: 80px;
+
+          &:hover > a {
+            font-family: 'Montserrat-SemiBold';
+            color: $cl_dark-blue;
+
+            &::after {
+              width: 100%;
+            }
+          }
+
+          &:hover > .header-menu {
+            @extend %headerShow;
+          }
+
+          & > a {
+            color: $cl_price-black;
+            text-decoration: none;
+
+            &::after {
+              position: absolute;
+              bottom: 0px;
+              width: 0px;
+              height: 2px;
+              background: $cl_dark-blue;
+              transition: all 0.35s ease-in-out 0s;
+              content: '';
+            }
+          }
+
+          .header-menu {
+            @extend %headerHidden;
+            border-top: 1px solid $cl_grey-border;
+            border-radius: 0px 0px 8px 8px;
+            background: $cl_white;
+            overflow: hidden;
+
+            &__list {
+              &-item {
+                flex: 0 0 calc(100% / 5);
+                padding: 20px 16px 16px;
+                border-right: 1px solid $cl_white-border;
+                border-bottom: 1px solid $cl_white-border;
+
+                &:nth-child(5n) {
+                  border-right: none;
+                }
+
+                .header-menu__list-title {
+                  margin-bottom: 8px;
+
+                  & > a {
+                    color: $cl_price-black;
+                    text-decoration: none;
+                  }
+                }
+
+                .header-menu__list-content {
+                  padding: 4px 0px;
+                  transition: all 0.35s ease-in-out 0s;
+                  cursor: pointer;
+
+                  &:hover {
+                    color: $cl_light-blue;
+                  }
+                }
+              }
+            }
+
+            &__support {
+              flex: 0 0 calc(100% / 6);
+              padding: 20px 16px 16px;
+              border-left: 1px solid $cl_white-border;
+
+              div:nth-last-child(1) {
+                color: $cl_light-blue;
+              }
+            }
+          }
+        }
+      }
+
+      .header-search {
+        width: 400px;
+        margin-left: 36px;
+
+        & > input {
+          height: 40px;
+          padding: 0px 60px 0px 16px;
+          border: 1px solid $cl_grey-border;
+          border-radius: 50px;
+          background: $cl_input-grey;
+          transition: all 0.35s ease-in-out 0s;
+
+          &:hover {
+            border: 1px solid $cl_light-blue;
+          }
+
+          &:focus {
+            border: 1px solid $cl_light-blue;
+            box-shadow: none;
+          }
+        }
+
+        &__btn {
+          top: 0px;
+          right: 0px;
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+        }
+      }
+
+      .header-action {
+        &__item {
+          width: 56px;
+          height: 56px;
+          margin-left: 16px;
+          border-radius: 50%;
+          transition: all 0.35s ease-in-out 0s;
+
+          &:hover {
+            background: $cl_grey-background;
+
+            .header-action__dropdown {
+              @extend %headerShow;
+            }
+          }
+
+          &:nth-child(3) {
+            cursor: pointer;
+
+            svg {
+              path {
+                transition: all 0.35s ease-in-out 0s;
+              }
+            }
+
+            &:hover {
+              svg {
+                path {
+                  fill: $cl_light-blue;
+                }
+              }
+            }
+          }
+
+          svg {
+            width: 28px;
+            height: 28px;
+
+            path {
+              fill: $cl_price-black;
+            }
+          }
+
+          .header-action__dropdown {
+            @extend %headerHidden;
+            top: 50px;
+            left: 50%;
+            min-width: 260px;
+            padding-top: 15px;
+            transform: translateX(-50%);
+
+            &::before {
+              position: absolute;
+              top: 8px;
+              left: calc(50% - 6px);
+              width: 13px;
+              height: 13px;
+              border: 1px solid $cl_grey-border;
+              border-width: 0px 1px 1px 0px;
+              background: $cl_white;
+              transform: rotate(225deg);
+              content: '';
+            }
+
+            &.cart {
+              .empty-cart {
+                padding: 24px 20px;
+              }
+            }
+
+            &.account {
+              right: 0;
+              left: inherit;
+              transform: translateX(0);
+
+              &::before {
+                right: 22px;
+                left: inherit;
+              }
+
+              .authentication {
+                padding-top: 8px;
+
+                &__btn {
+                  padding: 12px 16px;
+                  transition: all 0.35s ease-in-out 0s;
+
+                  &:hover {
+                    background: $cl_grey-background;
+                  }
+                }
+              }
+            }
+
+            &-container {
+              border-radius: 8px;
+              background: $cl_white;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            }
+          }
+        }
       }
     }
   }

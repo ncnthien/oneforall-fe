@@ -1,6 +1,6 @@
 import './Main.scss'
 
-const Main = () => {
+const Main: React.FC = () => {
   return <div className='color-red'>home page</div>
 }
 
