@@ -1,6 +1,6 @@
+import logo from 'assets/images/logo.png'
 import {
   CartIcon,
-  Logo,
   NotificationIcon,
   SearchIcon,
   UserIcon,
@@ -19,7 +19,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
       <div className='container'>
         <div className='position-relative d-flex align-items-center'>
           <Link to='/' className='header-logo position-relative'>
-            <Logo />
+            <img src={logo} alt='' />
           </Link>
           <div className='header-nav d-flex align-items-center h-100'>
             <div
