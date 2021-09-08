@@ -1,0 +1,29 @@
+@import 'assets/styles/variable.scss';
+
+.dropdown__item {
+  list-style-type: none;
+
+  .item__checkbox:checked ~ .item__fakecheck {
+    border-color: $cl_black;
+    background-color: $cl_light-blue;
+
+    .item__checked {
+      display: block;
+    }
+  }
+
+  .item__fakecheck {
+    width: 17px;
+    height: 17px;
+    border: 2px solid $cl_grey-border;
+    pointer-events: none;
+
+    .item__checked {
+      display: none;
+    }
+  }
+
+  .item__text {
+    top: -2px;
+  }
+}
