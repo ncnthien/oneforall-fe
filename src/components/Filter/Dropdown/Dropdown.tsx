@@ -1,12 +1,9 @@
 import { useState } from 'react'
 import './Dropdown.scss'
-import { IDropdown, IDropdownState } from './interface'
 import FilterItem from './FilterItem/FilterItem'
+import { IDropdown, IDropdownState } from './interface'
 
-const Dropdown: React.FC<IDropdown> = ({
-  dropdown: { id, name, items },
-  handleFilterItemClick,
-}) => {
+const Dropdown: React.FC<IDropdown> = ({ dropdown: { name, items } }) => {
   const [isExpanded, setIsExpanded] =
     useState<IDropdownState['listExpansion']>(false)
 
@@ -15,13 +12,8 @@ const Dropdown: React.FC<IDropdown> = ({
   }
 
   const renderList = (): JSX.Element[] => {
-    return items.map((item: string, index) => (
-      <FilterItem
-        key={index}
-        item={item}
-        dropdownId={id}
-        handleFilterItemClick={handleFilterItemClick}
-      />
+    return items.map((item, index) => (
+      <FilterItem key={index} itemName={item.name} itemChecked={item.checked} />
     ))
   }
 

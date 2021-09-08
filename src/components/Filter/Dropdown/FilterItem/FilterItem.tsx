@@ -1,30 +1,34 @@
+import { useAppDispatch } from 'app/hooks'
+import checkedImg from 'assets/images/checked.png'
+import { useEffect, useState } from 'react'
+import { toggleItem, toggleFilter } from '../../Filter.slice'
 import './FilterItem.scss'
 import { IFilterItem } from './interface'
-import checked from 'assets/images/checked.png'
 
-const FilterItem: React.FC<IFilterItem> = ({
-  item,
-  dropdownId,
-  handleFilterItemClick,
-}) => {
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleFilterItemClick(dropdownId, item, event.target.checked)
+const FilterItem: React.FC<IFilterItem> = ({ itemName, itemChecked }) => {
+  const dispatch = useAppDispatch()
+  const [checked, setChecked] = useState<boolean>(false)
+
+  useEffect(() => {
+    setChecked(itemChecked)
+  }, [itemChecked])
+
+  const handleItemClick = () => {
+    dispatch(toggleItem(itemName))
+    dispatch(toggleFilter(itemName))
   }
 
   return (
-    <li className='dropdown__item d-flex position-relative pb-2'>
-      <input
-        type='checkbox'
-        id={item}
-        className='item__checkbox me-3 opacity-0'
-        onChange={handleInputChange}
-      />
-      <div className='item__fakecheck d-flex align-items-center justify-content-center position-absolute'>
-        <img src={checked} alt='' className='item__checked w-75' />
+    <li className='dropdown__item d-flex pb-2' onClick={handleItemClick}>
+      <div
+        className={
+          'item__fakecheck d-flex align-items-center justify-content-center' +
+          (checked ? ' item__fakecheck--active' : '')
+        }
+      >
+        <img src={checkedImg} alt='' className='item__checked w-75' />
       </div>
-      <label htmlFor={item} className='item__text size-14 position-relative'>
-        {item}
-      </label>
+      <label className='item__text ms-2 size-14'>{itemName}</label>
     </li>
   )
 }

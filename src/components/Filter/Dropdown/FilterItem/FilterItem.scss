@@ -3,13 +3,8 @@
 .dropdown__item {
   list-style-type: none;
 
-  .item__checkbox:checked ~ .item__fakecheck {
-    border-color: $cl_black;
-    background-color: $cl_light-blue;
-
-    .item__checked {
-      display: block;
-    }
+  &:first-child {
+    margin-top: 4px;
   }
 
   .item__fakecheck {
@@ -17,6 +12,14 @@
     height: 17px;
     border: 2px solid $cl_grey-border;
     pointer-events: none;
+
+    &.item__fakecheck--active {
+      border-color: $cl_black;
+      background-color: $cl_light-blue;
+      .item__checked {
+        display: block;
+      }
+    }
 
     .item__checked {
       display: none;

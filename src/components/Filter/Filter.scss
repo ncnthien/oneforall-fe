@@ -3,15 +3,15 @@
 .filter {
   .filter__approved {
     border-top: 1px solid $cl_grey-border;
+
     .approved {
       .approved__header {
-        .approved__text {
-        }
         .approved__clear {
           border: none;
           background-color: transparent;
         }
       }
+
       .approved__list {
         .approved__item {
           border: 1px solid $cl_grey-border;
@@ -22,5 +22,38 @@
   }
 
   .filter__saleonly {
+    border-top: 1px solid $cl_grey-border;
+
+    .saleonly {
+      .saleonly__btn {
+        width: 36px;
+        height: 24px;
+        background-color: $cl_btn-switch-grey;
+        border: 1px solid $cl_btn-switch-grey;
+        border-radius: 100px;
+
+        &::after {
+          display: block;
+          width: 22px;
+          height: 22px;
+          position: absolute;
+          content: '';
+          top: 0px;
+          left: 0px;
+          background-color: $cl_white;
+          border-radius: 50%;
+        }
+      }
+
+      .saleonly__btn--active {
+        background-color: $cl_light-blue;
+
+        &::after {
+          left: auto;
+          right: 0px;
+          border: 1px solid $cl_light-blue;
+        }
+      }
+    }
   }
 }
