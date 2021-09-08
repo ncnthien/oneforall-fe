@@ -1,0 +1,26 @@
+@import 'assets/styles/variable.scss';
+
+.filter {
+  .filter__approved {
+    border-top: 1px solid $cl_grey-border;
+    .approved {
+      .approved__header {
+        .approved__text {
+        }
+        .approved__clear {
+          border: none;
+          background-color: transparent;
+        }
+      }
+      .approved__list {
+        .approved__item {
+          border: 1px solid $cl_grey-border;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+
+  .filter__saleonly {
+  }
+}
