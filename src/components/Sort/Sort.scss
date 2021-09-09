@@ -1,0 +1,17 @@
+@import 'assets/styles/variable.scss';
+
+.sort {
+  .sort__container {
+    .sort__text {
+    }
+
+    .sort__item {
+      border: none;
+      background-color: transparent;
+
+      &.sort__item--active {
+        color: $cl_light-blue;
+      }
+    }
+  }
+}
