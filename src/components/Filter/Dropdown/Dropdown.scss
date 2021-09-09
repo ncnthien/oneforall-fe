@@ -1,0 +1,27 @@
+@import 'assets/styles/variable.scss';
+
+.dropdown {
+  border-top: 1px solid $cl_grey-border;
+
+  .dropdown__container {
+    .dropdown__header {
+      cursor: pointer;
+
+      .header__text {
+        cursor: pointer;
+      }
+
+      .header__icon {
+        cursor: pointer;
+      }
+    }
+
+    .dropdown__list {
+      height: 0px;
+
+      &.dropdown__list--expanded {
+        height: auto;
+      }
+    }
+  }
+}
