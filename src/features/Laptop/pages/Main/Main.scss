@@ -1,0 +1,47 @@
+@import 'assets/styles/variable.scss';
+
+.laptop {
+  padding: 24px 0px;
+
+  .container {
+    .laptop__breadcumb {
+      margin-bottom: 32px;
+    }
+
+    .laptop__title {
+      margin-bottom: 24px;
+    }
+
+    .laptop__content {
+      .laptop__filter {
+        width: 250px;
+
+        .laptop__count {
+          margin-bottom: 20px;
+        }
+
+        &-container {
+          top: 72px;
+          max-height: calc(100vh - 73px);
+          overflow-y: scroll;
+
+          &::-webkit-scrollbar {
+            width: 8px;
+          }
+          &::-webkit-scrollbar-track {
+            background: $cl_white;
+          }
+          &::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            background: $cl_white-border;
+          }
+        }
+      }
+
+      .laptop__list {
+        flex-grow: 1;
+        height: 2000px;
+      }
+    }
+  }
+}
