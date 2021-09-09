@@ -5,8 +5,11 @@ import {
   SearchIcon,
   UserIcon,
 } from 'assets/images/svgs'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Input } from 'reactstrap'
+import AuthModal from './AuthModal/AuthModal'
+import { EAuthModalTab } from './enum'
 import './Header.scss'
 
 interface IProps {
@@ -14,8 +17,18 @@ interface IProps {
 }
 
 const Header: React.FC<IProps> = ({ setShowOverlay }) => {
+  const [showAuthModal, setShowAuthModal] = useState<boolean>(false)
+  const [activeAuthModalTab, setActiveAuthModalTab] = useState<string>('logIn')
+
   return (
     <div className='header position-relative'>
+      <AuthModal
+        show={showAuthModal}
+        setShow={setShowAuthModal}
+        activeTab={activeAuthModalTab}
+        setActiveTab={setActiveAuthModalTab}
+      />
+
       <div className='container'>
         <div className='position-relative d-flex align-items-center'>
           <Link to='/' className='header-logo position-relative'>
@@ -273,8 +286,24 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
               <div className='header-action__dropdown account position-absolute'>
                 <div className='header-action__dropdown-container'>
                   <div className='authentication font-bold size-14'>
-                    <div className='authentication__btn'>Đăng nhập</div>
-                    <div className='authentication__btn'>Tạo tài khoản</div>
+                    <div
+                      className='authentication__btn'
+                      onClick={() => {
+                        setShowAuthModal(true)
+                        setActiveAuthModalTab(EAuthModalTab.LOGIN)
+                      }}
+                    >
+                      Đăng nhập
+                    </div>
+                    <div
+                      className='authentication__btn'
+                      onClick={() => {
+                        setShowAuthModal(true)
+                        setActiveAuthModalTab(EAuthModalTab.LOGOUT)
+                      }}
+                    >
+                      Tạo tài khoản
+                    </div>
                   </div>
                 </div>
               </div>
