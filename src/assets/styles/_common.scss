@@ -18,3 +18,15 @@ body {
     opacity: 0.5;
   }
 }
+
+// scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: $cl_white;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: $cl_light-blue;
+}

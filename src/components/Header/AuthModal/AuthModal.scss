@@ -1,0 +1,121 @@
+@import 'assets/styles/variable.scss';
+
+.auth-modal {
+  &__header {
+    border-bottom: 2px solid $cl_grey-background;
+
+    .auth-modal-tab__nav {
+      flex: 0 0 50%;
+      height: 64px;
+      padding: 0px 16px;
+      cursor: pointer;
+
+      &.active {
+        &::after {
+          position: absolute;
+          right: 0px;
+          bottom: -2px;
+          left: 0px;
+          height: 2px;
+          background: $cl_light-blue;
+          content: '';
+        }
+      }
+    }
+  }
+
+  &-tab {
+    &__container {
+      padding: 24px 32px;
+
+      .form-group {
+        margin-bottom: 16px;
+
+        label {
+          margin-bottom: 8px;
+        }
+
+        input {
+          height: 48px;
+          padding: 10px 16px;
+          border: 1px solid $cl_grey-background;
+          background: $cl_grey-background;
+          box-shadow: none;
+          transition: all 0.35s ease-in-out 0s;
+
+          &:hover,
+          &:focus {
+            border: 1px solid $cl_light-blue;
+          }
+        }
+      }
+
+      .auth-modal-tab__btn {
+        margin-bottom: 24px;
+
+        &.light-btn {
+          button {
+            border: 1px solid $cl_grey-border;
+            background: $cl_white;
+
+            span {
+              margin-left: 8px;
+            }
+          }
+        }
+
+        button {
+          height: 48px;
+          border: none;
+          border-radius: 56px;
+          background: $cl_light-blue;
+          text-align: center;
+        }
+      }
+
+      .auth-modal-tab__line {
+        margin-bottom: 16px;
+
+        &::after {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background: $cl_grey-border;
+          content: '';
+        }
+
+        span {
+          padding: 0px 16px;
+          background: $cl_white;
+          z-index: 1;
+        }
+      }
+
+      .auth-modal-tab__btn-container {
+        .auth-modal-tab__btn {
+          margin-bottom: 16px;
+
+          &:last-child {
+            margin-bottom: 0px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal-open {
+  padding: 0 !important;
+
+  .modal {
+    &-dialog {
+      max-width: 440px;
+
+      .modal-content {
+        border-radius: 8px;
+      }
+    }
+  }
+}
