@@ -1,0 +1,52 @@
+@import 'assets/styles/variable.scss';
+
+.pagination {
+  &__item {
+    width: 40px;
+    height: 40px;
+    margin: 0px 5px;
+    border: 1px solid $cl_grey-border;
+    border-radius: 50%;
+    color: $cl_light-black;
+    transition: all 0.35s ease-in-out 0s;
+    cursor: pointer;
+
+    &:hover {
+      background: $cl_light-blue;
+    }
+
+    &.active {
+      background: $cl_light-blue;
+    }
+
+    &.prev,
+    &.next {
+      &.disable {
+        pointer-events: none;
+      }
+
+      &::after {
+        position: absolute;
+        top: 14px;
+        left: 17px;
+        width: 10px;
+        height: 10px;
+        border-left: 2px solid $cl_light-black;
+        border-bottom: 2px solid $cl_light-black;
+        transform: rotate(45deg);
+        content: '';
+      }
+    }
+
+    &.next {
+      &::after {
+        left: 12px;
+        transform: rotate(-135deg);
+      }
+    }
+
+    &.dots {
+      pointer-events: none;
+    }
+  }
+}
