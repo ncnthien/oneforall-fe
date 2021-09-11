@@ -1,16 +1,16 @@
 @import 'assets/styles/variable.scss';
 
-.breadcumb {
-  .breadcumb__logo {
-    .breadcumb__img {
+.breadcrumb {
+  .breadcrumb__logo {
+    .breadcrumb__img {
       width: 70px;
     }
   }
 
-  .breadcumb__slash {
+  .breadcrumb__slash {
   }
 
-  .breadcumb__link {
+  .breadcrumb__link {
     &:hover {
       color: $cl_black;
     }

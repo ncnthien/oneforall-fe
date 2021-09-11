@@ -110,6 +110,10 @@
   padding: 0 !important;
 
   .modal {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     &-dialog {
       max-width: 440px;
 
