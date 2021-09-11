@@ -1,4 +1,6 @@
-export const sectorMockData = [
+import { ISectorItem } from './interface'
+
+export const sectorMockData: ISectorItem[] = [
   {
     id: '4675df7b-9895-40bc-ad7e-5a3928f064bd',
     url: 'https://www.fillmurray.com/640/360',
@@ -62,7 +64,6 @@ export const sectorMockData = [
     price: 40000000,
     reducedPrice: 18000000,
   },
-
   {
     id: 'd0e8a430-ed89-4b5b-86f1-dfbf8712b157',
     url: 'https://www.fillmurray.com/640/360',

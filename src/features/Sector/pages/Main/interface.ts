@@ -10,7 +10,7 @@ export interface IShowedSectorItemExtent {
   total: number
 }
 
-export interface IGetLaptopListApi {
+export interface IGetSectorListApi {
   sectorList: ISectorItem[]
   showedSectorItemExtent: IShowedSectorItemExtent
 }

@@ -1,3 +1,4 @@
+import notFoundSectorItem from 'assets/images/notFoundSectorItem.png'
 import { Breadcrumb, Filter, Item, Pagination } from 'components'
 import { EPagination } from 'components/enum'
 import { ESort } from 'features/Sector/enum'
@@ -5,7 +6,7 @@ import { ISector } from 'features/Sector/interface'
 import { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
 import {
-  IGetLaptopListApi,
+  IGetSectorListApi,
   ISectorItem,
   IShowedSectorItemExtent,
 } from './interface'
@@ -22,12 +23,12 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
   const match = useRouteMatch()
 
   useEffect(() => {
-    // fake api is here to get the filtered lapLopList and showedLaptopExtent  by page
-    const getLaptopListApi = (
+    // fake api is here to get the filtered lapLopList and showedSectorItemExtent  by page
+    const getSectorListApi = (
       page = 1,
       perPage = 24,
       sort?: string
-    ): IGetLaptopListApi => {
+    ): IGetSectorListApi => {
       const total: number = sectorMockData.length
       const start: number = (page - 1) * perPage
       const end: number = page * perPage > total ? total : page * perPage
@@ -35,16 +36,16 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
       // sort and compare between price and reducedPrice of sector item
       if (sort) {
         if (sort === 'ASCEND') {
-          const laptopList = sectorMockData.sort(
+          const sectorList = sectorMockData.sort(
             (sectorItem, nextSectorItem) => {
-              if (sectorItem.isSale) {
-                if (nextSectorItem.isSale) {
+              if (sectorItem.isSale && sectorItem.reducedPrice) {
+                if (nextSectorItem.isSale && nextSectorItem.reducedPrice) {
                   return sectorItem.reducedPrice - nextSectorItem.reducedPrice
                 } else {
                   return sectorItem.reducedPrice - nextSectorItem.price
                 }
               } else {
-                if (nextSectorItem.isSale) {
+                if (nextSectorItem.isSale && nextSectorItem.reducedPrice) {
                   return sectorItem.price - nextSectorItem.reducedPrice
                 } else {
                   return sectorItem.price - nextSectorItem.price
@@ -54,22 +55,22 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
           )
 
           return {
-            sectorList: laptopList.slice(start, end),
+            sectorList: sectorList.slice(start, end),
             showedSectorItemExtent: { start, end, total },
           }
         }
 
         if (sort === 'DESCEND') {
-          const laptopList = sectorMockData.sort(
+          const sectorList = sectorMockData.sort(
             (sectorItem, nextSectorItem) => {
-              if (sectorItem.isSale) {
-                if (nextSectorItem.isSale) {
+              if (sectorItem.isSale && sectorItem.reducedPrice) {
+                if (nextSectorItem.isSale && nextSectorItem.reducedPrice) {
                   return nextSectorItem.reducedPrice - sectorItem.reducedPrice
                 } else {
                   return nextSectorItem.price - sectorItem.reducedPrice
                 }
               } else {
-                if (nextSectorItem.isSale) {
+                if (nextSectorItem.isSale && nextSectorItem.reducedPrice) {
                   return nextSectorItem.reducedPrice - sectorItem.price
                 } else {
                   return nextSectorItem.price - sectorItem.price
@@ -79,7 +80,7 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
           )
 
           return {
-            sectorList: laptopList.slice(start, end),
+            sectorList: sectorList.slice(start, end),
             showedSectorItemExtent: { start, end, total },
           }
         }
@@ -91,7 +92,7 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
       }
     }
 
-    const { sectorList, showedSectorItemExtent } = getLaptopListApi(
+    const { sectorList, showedSectorItemExtent } = getSectorListApi(
       page,
       EPagination.PER_PAGE,
       sort
@@ -101,19 +102,28 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
     setSectorList(sectorList)
   }, [page, sort])
 
-  const renderLaptopList = (LaptopList: ISectorItem[]): JSX.Element[] => {
-    return LaptopList.map((laptop: ISectorItem) => (
+  const renderSectorList = (sectorList: ISectorItem[]): JSX.Element[] => {
+    return sectorList.map((sectorItem: ISectorItem) => (
       <Item
-        key={laptop.id}
-        url={laptop.url}
-        img={laptop.img}
-        name={laptop.name}
-        isSale={laptop.isSale}
-        price={laptop.price}
-        reducedPrice={laptop.reducedPrice}
+        key={sectorItem.id}
+        url={sectorItem.url}
+        img={sectorItem.img}
+        name={sectorItem.name}
+        isSale={sectorItem.isSale}
+        price={sectorItem.price}
+        reducedPrice={sectorItem.reducedPrice}
       />
     ))
   }
+
+  const renderNotFoundItem = (
+    <div className='d-flex flex-column align-items-center w-100 p-4'>
+      <div>
+        <img src={notFoundSectorItem} alt='' />
+      </div>
+      <h4 className='font-bold size-20'>Không tìm thấy sản phẩm</h4>
+    </div>
+  )
 
   const getInfoSector = (
     sectorType: ISector['sectorType']
@@ -152,9 +162,9 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
             {showedSectorItemExtent && (
               <div className='filter__count size-14'>
                 <span className='font-bold'>
-                  {`${showedSectorItemExtent.start + 1} - ${
-                    showedSectorItemExtent.end
-                  }`}
+                  {`${
+                    sectorList.length ? showedSectorItemExtent.start + 1 : 0
+                  } - ${showedSectorItemExtent.end}`}
                 </span>{' '}
                 <span>{`trên ${showedSectorItemExtent?.total} sản phẩm`}</span>
               </div>
@@ -180,15 +190,21 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
               </span>
             </div>
             <div className='sector-content__list d-flex flex-wrap'>
-              {renderLaptopList(sectorList)}
+              {renderSectorList(sectorList).length > 0
+                ? renderSectorList(sectorList)
+                : renderNotFoundItem}
             </div>
-            <div className='sector-content__pagination d-flex justify-content-center'>
-              <Pagination
-                total={showedSectorItemExtent?.total || 0}
-                page={page}
-                setPage={setPage}
-              />
-            </div>
+            {renderSectorList(sectorList).length > 0 ? (
+              <div className='sector-content__pagination d-flex justify-content-center'>
+                <Pagination
+                  total={showedSectorItemExtent?.total || 0}
+                  page={page}
+                  setPage={setPage}
+                />
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       </div>
