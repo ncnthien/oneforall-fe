@@ -1,9 +1,10 @@
 import { MainLayout } from 'layouts'
 import { Switch, useRouteMatch } from 'react-router-dom'
 import PublicRoute from 'routes/PublicRoute'
+import { ISector } from './interface'
 import { Main } from './pages'
 
-const Laptop: React.FC = () => {
+const Sector: React.FC<ISector> = ({ sectorType }) => {
   const match = useRouteMatch()
 
   return (
@@ -11,11 +12,11 @@ const Laptop: React.FC = () => {
       <PublicRoute
         path={match.url}
         exact={true}
-        component={Main}
+        component={() => <Main sectorType={sectorType} />}
         layout={MainLayout}
       />
     </Switch>
   )
 }
 
-export default Laptop
+export default Sector
