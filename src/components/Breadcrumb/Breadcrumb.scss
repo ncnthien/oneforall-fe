@@ -1,0 +1,18 @@
+@import 'assets/styles/variable.scss';
+
+.breadcrumb {
+  .breadcrumb__logo {
+    .breadcrumb__img {
+      width: 70px;
+    }
+  }
+
+  .breadcrumb__slash {
+  }
+
+  .breadcrumb__link {
+    &:hover {
+      color: $cl_black;
+    }
+  }
+}
