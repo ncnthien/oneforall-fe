@@ -1,0 +1,23 @@
+@import 'assets/styles/variable.scss';
+
+.extent {
+  .extent__text {
+    margin-right: 46px;
+  }
+
+  .extent__list {
+    .extent__item {
+      background-color: $cl_grey-background;
+      color: $cl_black;
+      border-radius: 5px;
+      transition: all 0.35s ease 0s;
+
+      padding: 10px 20px;
+
+      &:hover {
+        color: $cl_white;
+        background-color: $cl_light-blue;
+      }
+    }
+  }
+}
