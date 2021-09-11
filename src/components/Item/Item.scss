@@ -2,7 +2,6 @@
 
 .item__wrapper {
   background-color: $cl_white;
-  max-width: 250px;
   margin-top: -1px;
   margin-right: -1px;
 
@@ -22,7 +21,7 @@
     border: 1px solid $cl_grey-border;
 
     .item__img-link {
-      min-height: 216px;
+      min-height: 190px;
 
       .item__img {
         transition: all 0.35s ease 0s;

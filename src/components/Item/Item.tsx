@@ -15,7 +15,7 @@ const Item: React.FC<IItem> = ({
   return (
     <div
       className={
-        (className ? className : '') + 'item__wrapper position-relative'
+        'item__wrapper position-relative ' + (className ? className : '')
       }
     >
       <div className='item p-3'>

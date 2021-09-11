@@ -25,7 +25,7 @@ const Dropdown: React.FC<IDropdown> = ({ dropdown: { name, items } }) => {
           onClick={handleDropdownHeaderClick}
         >
           <div className='header__text font-bold size-16'>{name}</div>
-          <div className='header__icon font-bold size-16 pe-2'>
+          <div className='header__icon font-bold size-20 pe-2'>
             {isExpanded ? '-' : '+'}
           </div>
         </div>

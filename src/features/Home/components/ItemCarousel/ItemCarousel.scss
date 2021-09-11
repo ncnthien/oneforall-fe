@@ -1,0 +1,91 @@
+@import 'assets/styles/variable.scss';
+
+.itemcarousel {
+  .itemcarousel__main {
+    padding: 20px 0px;
+
+    .itemcarousel__list {
+      top: 10px;
+      left: 4px;
+      z-index: 1;
+      transition: all 0.35s ease 0s;
+
+      .itemcarousel__item {
+        min-width: 20%;
+      }
+    }
+  }
+
+  .itemcarousel__btn-wrapper {
+    z-index: 2;
+    top: 90px;
+    &.itemcarousel__prev-btn-wrapper {
+      left: -25px;
+    }
+
+    &.itemcarousel__next-btn-wrapper {
+      right: -25px;
+    }
+
+    .itemcarousel__btn {
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background-color: $cl_grey-border;
+      transition: all 0.35s ease 0s;
+
+      &:hover {
+        background-color: $cl_light-blue;
+
+        &::after {
+          background-color: $cl_light-blue;
+        }
+
+        &.itemcarousel__prev-btn {
+          &::after {
+            border-color: $cl_white;
+          }
+        }
+
+        &.itemcarousel__next-btn {
+          &::after {
+            border-color: $cl_white;
+          }
+        }
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        background-color: $cl_grey-border;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 50%;
+        transition: all 0.35s ease 0s;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &.itemcarousel__prev-btn {
+        transition: all 0.35s ease 0s;
+
+        &::after {
+          border-left: 1px solid $cl_black;
+          border-bottom: 1px solid $cl_black;
+          left: 27px;
+        }
+      }
+
+      &.itemcarousel__next-btn {
+        transition: all 0.35s ease 0s;
+
+        &::after {
+          border-top: 1px solid $cl_black;
+          border-right: 1px solid $cl_black;
+          left: 22px;
+        }
+      }
+    }
+  }
+}

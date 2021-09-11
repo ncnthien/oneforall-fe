@@ -42,7 +42,7 @@ const Filter: React.FC<IFilter> = ({ filterType }) => {
     <div className='filter'>
       <div className='filter__approved'>
         <div className='approved'>
-          <div className='approved__header d-flex align-items-center justify-content-between py-2'>
+          <div className='approved__header d-flex align-items-center justify-content-between'>
             <div className='approved__text font-16 font-bold'>
               Bộ lọc được áp dụng
             </div>
@@ -64,7 +64,7 @@ const Filter: React.FC<IFilter> = ({ filterType }) => {
         </div>
       </div>
       <div className='filter__saleonly'>
-        <div className='saleonly d-flex align-items-center justify-content-between py-2'>
+        <div className='saleonly d-flex align-items-center justify-content-between'>
           <div className='saleonly__text font-bold'>Khuyến mãi</div>
           <button
             className={

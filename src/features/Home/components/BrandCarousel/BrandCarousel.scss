@@ -1,0 +1,64 @@
+@import 'assets/styles/variable.scss';
+
+.carousel {
+  .carousel__body {
+    .carousel__container {
+      &.carousel__container--active {
+        .carousel__btn {
+          &.carousel__prev-btn {
+            visibility: visible;
+          }
+
+          &.carousel__next-btn {
+            visibility: hidden;
+          }
+        }
+
+        .carousel__main {
+          .carousel__list {
+            transform: translateX(-300px);
+          }
+        }
+      }
+
+      .carousel__btn {
+        border: none;
+        background-color: transparent;
+
+        &.carousel__prev-btn {
+          visibility: hidden;
+          border-right: 1px solid $cl_grey-border;
+        }
+
+        &.carousel__next-btn {
+          border-left: 1px solid $cl_grey-border;
+          padding-left: 10px;
+        }
+      }
+
+      .carousel__main {
+        padding: 10px 0px;
+
+        .carousel__brick {
+          width: 110px;
+        }
+
+        .carousel__list {
+          top: 10px;
+          transition: all 0.35s ease 0s;
+
+          .carousel__item {
+            width: 109px;
+            border: 1px solid $cl_grey-border;
+            border-radius: 6px;
+            transition: all 0.35s ease 0s;
+
+            &:hover {
+              border-color: $cl_light-blue;
+            }
+          }
+        }
+      }
+    }
+  }
+}
