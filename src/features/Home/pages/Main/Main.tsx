@@ -26,17 +26,17 @@ const Main: React.FC = () => {
       >
         <ItemCarousel itemList={saleLaptopList} />
       </Section>
-      <Section title='Máy tính xách tay' linkButton='/'>
+      <Section title='Máy tính xách tay' linkButton='/laptop'>
         <BrandCarousel brandList={laptopBrand} isSlide />
         <PriceExtent extentList={extentList} />
         <ItemList itemList={laptopList} />
       </Section>
-      <Section title='Máy tính - PC' linkButton='/'>
+      <Section title='Máy tính - PC' linkButton='/pc'>
         <BrandCarousel brandList={pcBrand} />
         <PriceExtent extentList={extentList} />
         <ItemList itemList={pcList} />
       </Section>
-      <Section title='Phụ kiện - Gear' linkButton='/'>
+      <Section title='Phụ kiện - Gear' linkButton='/accessory'>
         <ItemList itemList={accessoryList} />
       </Section>
     </div>

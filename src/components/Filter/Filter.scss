@@ -6,6 +6,8 @@
 
     .approved {
       .approved__header {
+        padding: 11px 0px;
+
         .approved__clear {
           border: none;
           background-color: transparent;
@@ -25,6 +27,8 @@
     border-top: 1px solid $cl_grey-border;
 
     .saleonly {
+      padding: 11px 0px;
+
       .saleonly__btn {
         width: 36px;
         height: 24px;
