@@ -1,2 +1,6 @@
 export { default as Header } from './Header/Header'
 export { default as Footer } from './Footer/Footer'
+export { default as Breadcumb } from './Breadcumb/Breadcumb'
+export { default as Filter } from './Filter/Filter'
+export { default as Item } from './Item/Item'
+export { default as Sort } from './Sort/Sort'
