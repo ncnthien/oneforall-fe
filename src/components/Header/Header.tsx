@@ -5,11 +5,11 @@ import {
   SearchIcon,
   UserIcon,
 } from 'assets/images/svgs'
-import { useState } from 'react'
+import { EAuthModalTab } from 'components/enum'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Input } from 'reactstrap'
 import AuthModal from './AuthModal/AuthModal'
-import { EAuthModalTab } from './enum'
 import './Header.scss'
 
 interface IProps {
@@ -19,9 +19,46 @@ interface IProps {
 const Header: React.FC<IProps> = ({ setShowOverlay }) => {
   const [showAuthModal, setShowAuthModal] = useState<boolean>(false)
   const [activeAuthModalTab, setActiveAuthModalTab] = useState<string>('logIn')
+  const [isScrollingDown, setIsScrollingDown] = useState<boolean | 0>(false)
+
+  let lastScrollTop = 0
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const handleScroll = (): void => {
+    const position: number = window.scrollY
+
+    if (lastScrollTop < position) {
+      // if laScrollTop value less than position value then page is scrolling down
+      setIsScrollingDown(true)
+    } else {
+      //else page is scrolling up
+      setIsScrollingDown(false)
+    }
+    // if position value  equal 0 (header on top) then set isScrollingDown to 0, so header remove box shadow when header on top
+    if (position === 0) {
+      setIsScrollingDown(0)
+    }
+
+    lastScrollTop = position
+  }
 
   return (
-    <div className='header position-relative'>
+    <div
+      className={`header ${
+        isScrollingDown
+          ? 'header--scrolling-down'
+          : isScrollingDown === 0
+          ? 'header--on-top'
+          : ''
+      }`}
+    >
       <AuthModal
         show={showAuthModal}
         setShow={setShowAuthModal}
