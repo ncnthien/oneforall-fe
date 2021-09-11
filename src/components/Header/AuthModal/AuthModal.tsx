@@ -1,8 +1,8 @@
 import { FormGroup, Input, Modal, TabContent, TabPane } from 'reactstrap'
 import './AuthModal.scss'
-import { EAuthModalTab } from '../enum'
 import { IAuthModal } from './interface'
 import { FacebookBtnIcon, GoogleBtnIcon } from 'assets/images/svgs'
+import { EAuthModalTab } from 'components/enum'
 
 const AuthModal: React.FC<IAuthModal> = ({
   show,

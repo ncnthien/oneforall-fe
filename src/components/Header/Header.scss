@@ -13,8 +13,20 @@
 }
 
 .header {
+  position: sticky;
+  top: 0px;
   background: $cl_white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.35s ease-in-out 0s;
   z-index: 100;
+
+  &--scrolling-down {
+    transform: translateY(-73px);
+  }
+
+  &--on-top {
+    box-shadow: none;
+  }
 
   .container {
     & > div {
