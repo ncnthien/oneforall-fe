@@ -1,11 +1,19 @@
-import { Home, Laptop } from 'features'
+import { Home, Sector } from 'features'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 const Routes: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/laptop' component={Laptop} />
+        <Route
+          path='/laptop'
+          component={() => <Sector sectorType='laptop' />}
+        />
+        <Route path='/pc' component={() => <Sector sectorType='pc' />} />
+        <Route
+          path='/accessory'
+          component={() => <Sector sectorType='accessory' />}
+        />
         <Route path='/' component={Home} />
       </Switch>
     </BrowserRouter>
