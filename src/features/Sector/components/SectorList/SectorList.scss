@@ -1,0 +1,5 @@
+.sector-list {
+  & > .item__wrapper {
+    flex: 0 0 calc(100% / 4);
+  }
+}

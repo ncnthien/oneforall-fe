@@ -16,10 +16,6 @@
       .main__filter {
         min-width: 238px;
 
-        .filter__count {
-          margin-bottom: 20px;
-        }
-
         .filter__container {
           top: 72px;
           max-height: calc(100vh - 73px);
@@ -43,30 +39,6 @@
 
         .sector-content__sort {
           margin-bottom: 20px;
-
-          span {
-            display: inline-block;
-            transition: all 0.35s ease-in-out 0s;
-
-            &.active {
-              color: $cl_light-blue;
-            }
-
-            &:first-child {
-              margin-right: 16px;
-            }
-
-            &:not(:first-child) {
-              margin-right: 24px;
-              cursor: pointer;
-            }
-          }
-        }
-
-        .sector-content__list {
-          & > .item__wrapper {
-            flex: 0 0 calc(100% / 4);
-          }
         }
 
         .sector-content__pagination {

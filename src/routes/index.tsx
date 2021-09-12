@@ -14,6 +14,10 @@ const Routes: React.FC = () => {
           path='/accessory'
           component={() => <Sector sectorType='accessory' />}
         />
+        <Route
+          path='/brand/:brandName'
+          component={() => <Sector sectorType='laptop' brandPage />}
+        />
         <Route path='/' component={Home} />
       </Switch>
     </BrowserRouter>
