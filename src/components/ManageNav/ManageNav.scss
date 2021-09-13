@@ -1,0 +1,41 @@
+@import 'assets/styles/variable.scss';
+
+.manage-nav {
+  border-left: 1px solid $cl_grey-border;
+
+  &__item {
+    padding-left: 10px;
+    margin-bottom: 16px;
+    color: unset !important;
+    text-decoration: none;
+
+    &.active {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      top: 0px;
+      left: -3px;
+      width: 3px;
+      height: 100%;
+      background: $cl_light-blue;
+      opacity: 0;
+      content: '';
+    }
+
+    .item__icon {
+      margin-right: 5px;
+    }
+
+    .item__title {
+      transform: translateY(1px);
+    }
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+}
