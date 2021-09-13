@@ -1,7 +1,7 @@
 import { useAppDispatch } from 'app/hooks'
 import checkedImg from 'assets/images/checked.png'
+import { toggleFilter, toggleItem } from 'components/Filter/Filter.slice'
 import { useEffect, useState } from 'react'
-import { toggleItem, toggleFilter } from '../../Filter.slice'
 import './FilterItem.scss'
 import { IFilterItem } from './interface'
 

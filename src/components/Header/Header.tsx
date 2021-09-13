@@ -87,7 +87,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                 <div className='header-menu__list d-flex flex-grow-1 flex-wrap'>
                   <div className='header-menu__list-item'>
                     <div className='header-menu__list-title font-bold size-18'>
-                      <Link to='/dell'>Dell</Link>
+                      <Link to='/brand/dell'>Dell</Link>
                     </div>
                     <div className='header-menu__list-content size-14'>
                       Optiplex
@@ -107,7 +107,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                   </div>
                   <div className='header-menu__list-item'>
                     <div className='header-menu__list-title font-bold size-18'>
-                      <Link to='/hp'>HP</Link>
+                      <Link to='/brand/hp'>HP</Link>
                     </div>
                     <div className='header-menu__list-content size-14'>
                       Elitedesk
@@ -121,7 +121,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                   </div>
                   <div className='header-menu__list-item'>
                     <div className='header-menu__list-title font-bold size-18'>
-                      <Link to='/lenovo'>Lenovo</Link>
+                      <Link to='/brand/lenovo'>Lenovo</Link>
                     </div>
                     <div className='header-menu__list-content size-14'>
                       ThinkCentre
@@ -135,7 +135,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                   </div>
                   <div className='header-menu__list-item'>
                     <div className='header-menu__list-title font-bold size-18'>
-                      <Link to='/dell'>Dell</Link>
+                      <Link to='/brand/dell'>Dell</Link>
                     </div>
                     <div className='header-menu__list-content size-14'>
                       Optiplex
@@ -149,7 +149,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                   </div>
                   <div className='header-menu__list-item'>
                     <div className='header-menu__list-title font-bold size-18'>
-                      <Link to='/apple'>Apple</Link>
+                      <Link to='/brand/apple'>Apple</Link>
                     </div>
                     <div className='header-menu__list-content size-14'>
                       iMac
@@ -198,7 +198,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                 <div className='header-menu__list d-flex flex-grow-1 flex-wrap'>
                   <div className='header-menu__list-item'>
                     <div className='header-menu__list-title font-bold size-18'>
-                      <Link to='/hp'>HP</Link>
+                      <Link to='/brand/hp'>HP</Link>
                     </div>
                     <div className='header-menu__list-content size-14'>
                       Elitedesk
@@ -212,7 +212,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                   </div>
                   <div className='header-menu__list-item'>
                     <div className='header-menu__list-title font-bold size-18'>
-                      <Link to='/lenovo'>Lenovo</Link>
+                      <Link to='/brand/lenovo'>Lenovo</Link>
                     </div>
                     <div className='header-menu__list-content size-14'>
                       ThinkCentre
@@ -226,7 +226,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                   </div>
                   <div className='header-menu__list-item'>
                     <div className='header-menu__list-title font-bold size-18'>
-                      <Link to='/dell'>Dell</Link>
+                      <Link to='/brand/dell'>Dell</Link>
                     </div>
                     <div className='header-menu__list-content size-14'>
                       Optiplex
@@ -240,7 +240,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                   </div>
                   <div className='header-menu__list-item'>
                     <div className='header-menu__list-title font-bold size-18'>
-                      <Link to='/apple'>Apple</Link>
+                      <Link to='/brand/apple'>Apple</Link>
                     </div>
                     <div className='header-menu__list-content size-14'>
                       iMac

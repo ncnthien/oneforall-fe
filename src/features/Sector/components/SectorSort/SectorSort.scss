@@ -1,0 +1,21 @@
+@import 'assets/styles/variable.scss';
+
+.sector-sort {
+  span {
+    display: inline-block;
+    transition: all 0.35s ease-in-out 0s;
+
+    &.active {
+      color: $cl_light-blue;
+    }
+
+    &:first-child {
+      margin-right: 16px;
+    }
+
+    &:not(:first-child) {
+      margin-right: 24px;
+      cursor: pointer;
+    }
+  }
+}

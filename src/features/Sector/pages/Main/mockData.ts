@@ -1,4 +1,69 @@
-import { ISectorItem } from './interface'
+import { IGetSectorListApi, ISectorItem } from './interface'
+
+// fake api is here to get the filtered lapLopList and sectorItemExtent  by page
+export const getSectorListApi = (
+  page = 1,
+  perPage = 24,
+  sort?: string
+): IGetSectorListApi => {
+  const total: number = sectorMockData.length
+  const start: number = (page - 1) * perPage
+  const end: number = page * perPage > total ? total : page * perPage
+
+  // sort and compare between price and reducedPrice of sector item
+  if (sort) {
+    if (sort === 'ascend') {
+      const sectorList = sectorMockData.sort((sectorItem, nextSectorItem) => {
+        if (sectorItem.isSale && sectorItem.reducedPrice) {
+          if (nextSectorItem.isSale && nextSectorItem.reducedPrice) {
+            return sectorItem.reducedPrice - nextSectorItem.reducedPrice
+          } else {
+            return sectorItem.reducedPrice - nextSectorItem.price
+          }
+        } else {
+          if (nextSectorItem.isSale && nextSectorItem.reducedPrice) {
+            return sectorItem.price - nextSectorItem.reducedPrice
+          } else {
+            return sectorItem.price - nextSectorItem.price
+          }
+        }
+      })
+
+      return {
+        sectorList: sectorList.slice(start, end),
+        sectorItemExtent: { start, end, total },
+      }
+    }
+
+    if (sort === 'descend') {
+      const sectorList = sectorMockData.sort((sectorItem, nextSectorItem) => {
+        if (sectorItem.isSale && sectorItem.reducedPrice) {
+          if (nextSectorItem.isSale && nextSectorItem.reducedPrice) {
+            return nextSectorItem.reducedPrice - sectorItem.reducedPrice
+          } else {
+            return nextSectorItem.price - sectorItem.reducedPrice
+          }
+        } else {
+          if (nextSectorItem.isSale && nextSectorItem.reducedPrice) {
+            return nextSectorItem.reducedPrice - sectorItem.price
+          } else {
+            return nextSectorItem.price - sectorItem.price
+          }
+        }
+      })
+
+      return {
+        sectorList: sectorList.slice(start, end),
+        sectorItemExtent: { start, end, total },
+      }
+    }
+  }
+
+  return {
+    sectorList: sectorMockData.slice(start, end),
+    sectorItemExtent: { start, end, total },
+  }
+}
 
 export const sectorMockData: ISectorItem[] = [
   {

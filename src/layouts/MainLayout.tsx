@@ -7,7 +7,9 @@ const MainLayout: React.FC<ILayout> = ({ children }) => {
 
   const renderOverlay = (show: boolean): JSX.Element => (
     <div
-      className={`overlay ${show ? 'show' : ''}position-absolute start-0 w-100`}
+      className={`overlay ${
+        show ? 'show' : ''
+      } position-absolute start-0 w-100`}
     />
   )
 
