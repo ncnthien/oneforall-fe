@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
-
+import { useAppDispatch } from 'app/hooks'
 import { IItem } from './interface'
 import './Item.scss'
+import { add } from 'features/Cart/Cart.slice'
 
 const Item: React.FC<IItem> = ({
+  id,
   url,
   img,
   name,
@@ -12,6 +14,21 @@ const Item: React.FC<IItem> = ({
   reducedPrice,
   className,
 }) => {
+  const dispatch = useAppDispatch()
+
+  const handleClick = () => {
+    const item = {
+      id,
+      url,
+      img,
+      name,
+      price,
+      isSale,
+      reducedPrice,
+    }
+    dispatch(add(item))
+  }
+
   return (
     <div
       className={
@@ -40,7 +57,10 @@ const Item: React.FC<IItem> = ({
             </p>
           )}
         </div>
-        <button className='item__btn mt-3 d-block mx-auto px-4 py-2 size-14'>
+        <button
+          className='item__btn mt-3 d-block mx-auto px-4 py-2 size-14'
+          onClick={handleClick}
+        >
           Thêm vào giỏ hàng
         </button>
       </div>

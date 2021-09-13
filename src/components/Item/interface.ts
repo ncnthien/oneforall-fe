@@ -1,4 +1,5 @@
 export interface IItem {
+  id: string
   url: string
   img: string
   name: string

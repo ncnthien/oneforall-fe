@@ -6,6 +6,7 @@ const ItemList: React.FC<IItemList> = ({ itemList }) => {
   const renderItemList = (): JSX.Element[] => {
     return itemList.map(item => (
       <Item
+        id={item.id}
         key={item.id}
         url={item.url}
         img={item.img}
