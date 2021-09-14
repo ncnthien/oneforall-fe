@@ -2,10 +2,10 @@ import { HistoryIcon, UserIcon } from 'assets/images/svgs'
 import { Breadcrumb, ManageNav } from 'components'
 import { useState } from 'react'
 import { Input } from 'reactstrap'
-import { IProfileNav, IUserForm } from './interface'
+import { INavList, IUserForm } from './interface'
 import './Main.scss'
 
-const profileNav: IProfileNav[] = [
+export const manageNavList: INavList[] = [
   { title: 'Tài khoản', url: '/profile', icon: UserIcon, active: true },
   { title: 'Lịch sử mua hàng', url: '/history', icon: HistoryIcon },
 ]
@@ -14,6 +14,7 @@ const fakeUser = {
   username: 'Nguyễn Công Nhật Thiên',
   email: 'nhatthien185@gmail.com',
   avatar: 'https://www.fillmurray.com/640/360',
+  phone: '0782367185',
 }
 
 const Main: React.FC = () => {
@@ -47,7 +48,7 @@ const Main: React.FC = () => {
         <div className='profile__main d-flex'>
           <div className='main__nav'>
             <div className='nav__wrapper position-sticky'>
-              <ManageNav navList={profileNav} />
+              <ManageNav navList={manageNavList} />
             </div>
           </div>
           <div className='main__profile-wrapper'>
@@ -69,6 +70,18 @@ const Main: React.FC = () => {
                   type='file'
                   name='avatar'
                   id='avatar'
+                  onChange={handleUserFormChange}
+                />
+              </div>
+              <div className='form__input size-16'>
+                <label htmlFor='phone' className='font-bold'>
+                  Số điện thoại
+                </label>
+                <Input
+                  type='text'
+                  name='phone'
+                  id='phone'
+                  value={userForm.phone}
                   onChange={handleUserFormChange}
                 />
               </div>

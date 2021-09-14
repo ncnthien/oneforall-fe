@@ -1,4 +1,4 @@
-export interface IProfileNav {
+export interface INavList {
   title: string
   url: string
   icon: React.ElementType
@@ -6,7 +6,8 @@ export interface IProfileNav {
 }
 
 export interface IUserForm {
-  username?: string
-  email?: string
+  username: string
+  email: string
   avatar?: string | ArrayBuffer | null
+  phone?: string
 }

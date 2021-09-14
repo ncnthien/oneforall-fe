@@ -1,0 +1,40 @@
+@import 'assets/styles/variable.scss';
+
+.history {
+  padding: 24px 0px;
+
+  .container {
+    .history__breadcrumb {
+      padding-bottom: 16px;
+    }
+
+    .history__main {
+      .main__nav {
+        min-width: 210px;
+
+        .nav__wrapper {
+          top: 88px;
+        }
+      }
+
+      .main__history-wrapper {
+        flex-grow: 1;
+
+        .history-wrapper__title {
+          margin-bottom: 24px;
+        }
+
+        .history-wrapper__table {
+          table {
+            border-collapse: collapse;
+
+            td {
+              padding: 13px 16px;
+              border: 1px solid $cl_grey-border;
+            }
+          }
+        }
+      }
+    }
+  }
+}
