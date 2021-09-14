@@ -1,5 +1,5 @@
 import { useAppDispatch } from 'app/hooks'
-import checkedImg from 'assets/images/checked.png'
+import { checkedImg } from 'assets/images'
 import { toggleFilter, toggleItem } from 'components/Filter/Filter.slice'
 import { useEffect, useState } from 'react'
 import './FilterItem.scss'

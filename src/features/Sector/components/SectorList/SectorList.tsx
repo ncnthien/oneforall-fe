@@ -1,5 +1,4 @@
-import { Item } from 'components'
-import { NotFoundItem } from '..'
+import { Item, NotFoundItem } from 'components'
 import { ISectorList } from './interface'
 import './SectorList.scss'
 
@@ -22,7 +21,11 @@ const SectorList: React.FC<ISectorList> = ({ sectorList }) => {
 
   return (
     <div className='sector-list d-flex flex-wrap'>
-      {sectorList.length > 0 ? renderSectorList(sectorList) : <NotFoundItem />}
+      {sectorList.length > 0 ? (
+        renderSectorList(sectorList)
+      ) : (
+        <NotFoundItem title='Không tìm thấy sản phẩm' />
+      )}
     </div>
   )
 }
