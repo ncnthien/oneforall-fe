@@ -1,7 +1,6 @@
 import { HistoryIcon, UserIcon } from 'assets/images/svgs'
 import { Breadcrumb, ManageNav } from 'components'
 import { INavList } from 'features/Profile/pages/Main/interface'
-import { Table } from 'reactstrap'
 import './Main.scss'
 
 export const manageNavList: INavList[] = [
