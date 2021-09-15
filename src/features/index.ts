@@ -1,2 +1,3 @@
-export { default as Home } from './Home/index'
-export { default as Sector } from './Sector/index'
+export { default as Home } from './Home'
+export { default as Sector } from './Sector'
+export { default as Cart } from './Cart'

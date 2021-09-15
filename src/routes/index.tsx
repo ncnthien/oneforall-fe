@@ -1,4 +1,4 @@
-import { Home, Sector } from 'features'
+import { Home, Sector, Cart } from 'features'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 const Routes: React.FC = () => {
@@ -18,6 +18,7 @@ const Routes: React.FC = () => {
           path='/brand/:brandName'
           component={() => <Sector sectorType='laptop' brandPage />}
         />
+        <Route path='/cart' component={Cart} />
         <Route path='/' component={Home} />
       </Switch>
     </BrowserRouter>

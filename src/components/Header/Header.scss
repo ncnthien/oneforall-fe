@@ -172,11 +172,45 @@
           border-radius: 50%;
           transition: all 0.35s ease-in-out 0s;
 
+          .header-action__cart-length {
+            background-color: $cl_light-blue;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            top: 0px;
+            right: 0px;
+            line-height: 24px;
+          }
+
           &:hover {
             background: $cl_grey-background;
 
             .header-action__dropdown {
               @extend %headerShow;
+            }
+          }
+
+          .filled-cart {
+            .filled-cart__list {
+              overflow-y: scroll;
+              max-height: 65vh;
+
+              .filled-cart__item {
+                .filled-cart__img {
+                  width: 20%;
+                }
+              }
+            }
+
+            .filled-cart__btn {
+              background-color: $cl_light-blue !important;
+              border-radius: 100px;
+              color: white !important;
+
+              &:hover {
+                background-color: $cl_light-blue !important;
+                color: white !important;
+              }
             }
           }
 
@@ -211,7 +245,7 @@
             @extend %headerHidden;
             top: 50px;
             left: 50%;
-            min-width: 260px;
+            min-width: 300px;
             padding-top: 15px;
             transform: translateX(-50%);
 
