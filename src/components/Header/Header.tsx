@@ -1,3 +1,4 @@
+import { useAppSelector } from 'app/hooks'
 import { logo } from 'assets/images'
 import {
   CartIcon,
@@ -6,6 +7,7 @@ import {
   UserIcon,
 } from 'assets/images/svgs'
 import { EAuthModalTab } from 'components/enum'
+import { getCost, getQuantity } from 'features/Cart/Cart.helper'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Input } from 'reactstrap'
@@ -21,6 +23,10 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
   const [activeAuthModalTab, setActiveAuthModalTab] = useState<string>('logIn')
   const [isScrollingDown, setIsScrollingDown] = useState<boolean | 0>(false)
 
+  const { cart } = useAppSelector(state => state.cart)
+  const quantity = getQuantity(cart)
+  const cost = getCost(cart)
+
   let lastScrollTop = 0
 
   useEffect(() => {
@@ -30,6 +36,34 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  const renderCartList = (): JSX.Element[] => {
+    return cart.map(item => (
+      <li
+        key={item.id}
+        className='filled-cart__item d-flex align-items-center mb-2'
+      >
+        <img src={item.img} alt='' className='filled-cart__img' />
+        <div className='filled-cart__item-content ms-2'>
+          <Link
+            to={item.url}
+            className='filled-cart__item-name text-reset text-decoration-none color-black font-bold size-14'
+          >
+            {item.name}
+          </Link>
+          <p className='filled-cart__item-price size-14 mb-0'>
+            <span className='color-red font-bold'>
+              {item.isSale
+                ? item.reducedPrice?.toLocaleString()
+                : item.price.toLocaleString()}
+            </span>
+            {' x '}
+            <span>{item.quantity}</span>
+          </p>
+        </div>
+      </li>
+    ))
+  }
 
   const handleScroll = (): void => {
     const position: number = window.scrollY
@@ -306,15 +340,36 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
             <div className='header-action__item position-relative'>
               <Link
                 to='/cart'
-                className='d-flex justify-content-center align-items-center h-100'
+                className='d-flex justify-content-center align-items-center h-100 position-relative'
               >
                 <CartIcon />
+                {cart.length > 0 && (
+                  <div className='header-action__cart-length position-absolute text-center font-bold color-black size-14'>
+                    {quantity}
+                  </div>
+                )}
               </Link>
               <div className='header-action__dropdown cart position-absolute'>
                 <div className='header-action__dropdown-container'>
-                  <div className='empty-cart text-center font-bold size-14'>
-                    Bạn chưa có sản phẩm nào trong giỏ hàng
-                  </div>
+                  {!(cart.length > 0) ? (
+                    <div className='empty-cart text-center font-bold size-14'>
+                      Bạn chưa có sản phẩm nào trong giỏ hàng
+                    </div>
+                  ) : (
+                    <div className='filled-cart p-3'>
+                      <div className='filled-cart__header mb-3'>
+                        <span className='font-bold'>{quantity} sản phẩm</span>{' '}
+                        {'trong giỏ hàng'}
+                      </div>
+                      <ul className='filled-cart__list ps-0 mb-0'>
+                        {renderCartList()}
+                      </ul>
+                      <Link
+                        to='/cart'
+                        className='filled-cart__btn d-block text-center text-decoration-none py-2 mt-3 size-14 font-bold'
+                      >{`Giỏ hàng: ${cost.toLocaleString()} ₫`}</Link>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

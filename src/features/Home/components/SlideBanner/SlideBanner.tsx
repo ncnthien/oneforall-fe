@@ -4,7 +4,7 @@ import { ISlideBanner } from './interface'
 import './SlideBanner.scss'
 
 const SlideBanner: React.FC<ISlideBanner> = ({ eventList }) => {
-  const [currentSlide, setCurrentSlide] = useState<number>(3)
+  const [currentSlide, setCurrentSlide] = useState<number>(0)
   const timeEachInterval = 3000
 
   useEffect(() => {

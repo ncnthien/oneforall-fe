@@ -12,6 +12,7 @@ const ItemCarousel: React.FC<IItemCarousel> = ({ itemList }) => {
     return itemList.map(item => (
       <Item
         key={item.id}
+        id={item.id}
         url={item.url}
         img={item.img}
         name={item.name}
@@ -37,7 +38,14 @@ const ItemCarousel: React.FC<IItemCarousel> = ({ itemList }) => {
     <div className='itemcarousel position-relative'>
       <div className='itemcarousel__main position-relative overflow-hidden'>
         <div className='itemcarousel__brick'>
-          <Item url='' img='' name='' price={0} className='invisible' />
+          <Item
+            id='brick'
+            url=''
+            img=''
+            name=''
+            price={0}
+            className='invisible'
+          />
         </div>
         <ul
           className='itemcarousel__list d-flex w-100 position-absolute ps-0 mb-0'

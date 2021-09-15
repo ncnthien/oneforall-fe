@@ -1,4 +1,4 @@
-export interface IItem {
+export interface IMainItem {
   id: string
   url: string
   img: string
@@ -6,5 +6,5 @@ export interface IItem {
   price: number
   isSale?: boolean
   reducedPrice?: number
-  className?: string
+  quantity: number
 }

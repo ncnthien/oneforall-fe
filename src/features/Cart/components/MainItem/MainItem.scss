@@ -1,0 +1,35 @@
+@import 'assets/styles/variable.scss';
+
+.mainitem {
+  margin-top: -1px;
+  .mainitem__container {
+    border: 1px solid $cl_grey-border;
+
+    .mainitem__left {
+      width: 20%;
+    }
+    .mainitem__mid {
+      width: 60%;
+
+      .mid__name {
+      }
+      .mid__quantity-container {
+        border: 1px solid $cl_grey-border;
+        .mid__btn {
+          border: none;
+          background-color: $cl_grey-border;
+          width: 21px;
+        }
+        .mid__quantity {
+        }
+      }
+      .mid__remove-btn {
+        border: none;
+        background-color: transparent;
+      }
+    }
+    .mainitem__right {
+      width: 20%;
+    }
+  }
+}
