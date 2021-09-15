@@ -1,0 +1,98 @@
+@import 'assets/styles/variable.scss';
+
+.profile {
+  padding: 24px 0px;
+
+  .container {
+    .profile__breadcrumb {
+      padding-bottom: 16px;
+    }
+
+    .profile__main {
+      .main__nav {
+        min-width: 210px;
+
+        .nav__wrapper {
+          top: 88px;
+        }
+      }
+
+      .main__profile-wrapper {
+        flex-grow: 1;
+
+        .profile-wrapper__title {
+          margin-bottom: 24px;
+        }
+
+        .profile-wrapper__form {
+          padding: 24px;
+          margin-bottom: 24px;
+          border: 1px solid $cl_grey-border;
+
+          .form__input {
+            width: 400px;
+            padding: 0px 8px;
+            margin-bottom: 16px;
+
+            &--file {
+              display: flex;
+              align-items: center;
+
+              div {
+                width: 72px;
+                height: 72px;
+                border-radius: 50%;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+              }
+
+              label {
+                height: 36px;
+                padding: 0 20px;
+                margin-left: 8px;
+                border: 1px solid $cl_grey-border;
+                border-radius: 56px;
+                color: #414956;
+                line-height: 35px;
+                cursor: pointer;
+              }
+            }
+
+            label {
+              margin-bottom: 8px;
+            }
+
+            input {
+              height: 48px;
+              padding: 10px 16px;
+              border: 1px solid $cl_grey-background;
+              background: $cl_grey-background;
+              box-shadow: none;
+              transition: all 0.35s ease-in-out 0s;
+
+              &:hover,
+              &:focus {
+                border: 1px solid $cl_light-blue;
+              }
+            }
+          }
+
+          .form__btn {
+            padding: 0px 8px;
+            margin-top: 20px;
+
+            button {
+              height: 48px;
+              padding: 0 40px;
+              background: $cl_light-blue;
+              border: none;
+              border-radius: 56px;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

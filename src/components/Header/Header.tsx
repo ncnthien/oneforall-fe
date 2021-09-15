@@ -1,5 +1,5 @@
 import { useAppSelector } from 'app/hooks'
-import logo from 'assets/images/logo.png'
+import { logo } from 'assets/images'
 import {
   CartIcon,
   NotificationIcon,

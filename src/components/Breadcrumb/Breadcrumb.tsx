@@ -1,7 +1,7 @@
+import { logo } from 'assets/images'
 import { Link } from 'react-router-dom'
 import './Breadcrumb.scss'
 import { IBreadcrumb } from './interface'
-import logo from 'assets/images/logo.png'
 
 const Breadcrumb: React.FC<IBreadcrumb> = ({ url, name }) => {
   return (

@@ -1,5 +1,4 @@
-import certification from 'assets/images/certification.png'
-import footerLogo from 'assets/images/footerLogo.png'
+import { certification, footerLogo } from 'assets/images'
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from 'assets/images/svgs'
 import { Link } from 'react-router-dom'
 import './Footer.scss'
