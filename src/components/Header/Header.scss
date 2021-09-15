@@ -262,13 +262,13 @@
               content: '';
             }
 
-            &.cart {
+            &--cart {
               .empty-cart {
                 padding: 24px 20px;
               }
             }
 
-            &.account {
+            &--account {
               right: 0;
               left: inherit;
               transform: translateX(0);

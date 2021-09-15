@@ -349,7 +349,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                   </div>
                 )}
               </Link>
-              <div className='header-action__dropdown cart position-absolute'>
+              <div className='header-action__dropdown header-action__dropdown--cart position-absolute'>
                 <div className='header-action__dropdown-container'>
                   {!(cart.length > 0) ? (
                     <div className='empty-cart text-center font-bold size-14'>
@@ -375,7 +375,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
             </div>
             <div className='header-action__item position-relative d-flex justify-content-center align-items-center'>
               <UserIcon />
-              <div className='header-action__dropdown account position-absolute'>
+              <div className='header-action__dropdown header-action__dropdown--account position-absolute'>
                 <div className='header-action__dropdown-container'>
                   <div className='authentication font-bold size-14'>
                     <div
