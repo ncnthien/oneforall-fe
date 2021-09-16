@@ -10,13 +10,16 @@ import { EPagination } from 'components/enum'
 import { IItem } from 'components/Item/interface'
 import { ISectorItemExtent } from 'components/SectorItemExtent/interface'
 import { ISectorSort } from 'components/SectorSort/interface'
+import { BrandBanner } from 'features/Brand/components'
+import { getSectorListApi } from 'features/Sector/pages/Main/mockData'
 import { useEffect, useState } from 'react'
-import { useRouteMatch } from 'react-router'
-import { ISector } from './interface'
+import { useRouteMatch } from 'react-router-dom'
+import { IBrandMain } from './interface'
 import './Main.scss'
-import { getSectorListApi } from './mockData'
 
-const Main: React.FC<ISector> = ({ sectorType }) => {
+const Main: React.FC<IBrandMain> = ({ brand, brandType }) => {
+  const [brandFilter, setBrandFilter] =
+    useState<IBrandMain['brandType']>('laptop')
   const [sectorList, setSectorList] = useState<IItem[]>([])
   const [page, setPage] = useState<number>(1)
   const [sectorItemExtent, setSectorItemExtent] = useState<ISectorItemExtent>()
@@ -36,38 +39,23 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
     setSectorList(sectorList)
   }, [page, sort])
 
-  const getInfoSector = (
-    sectorType: ISector['sectorType']
-  ): { title: string; breadcrumb: string } => {
-    if (sectorType === 'laptop') {
-      return { title: 'Máy tính xách tay', breadcrumb: 'Laptop' }
-    }
-
-    if (sectorType === 'pc') {
-      return { title: 'PC', breadcrumb: 'PC' }
-    }
-
-    return { title: 'Phụ kiện', breadcrumb: 'Phụ kiện' }
-  }
-
   const handleSortClick: ISectorSort['handleSortClick'] = sort => {
     setSort(sort)
     window.scrollTo({ top: 72 })
   }
 
   return (
-    <div className='sector'>
+    <div className='brand'>
       <div className='container'>
-        <div className='sector__breadcrumb'>
-          <Breadcrumb
-            url={match.url}
-            name={`${getInfoSector(sectorType).breadcrumb}`}
-          />
+        <div className='brand__breadcrumb'>
+          <Breadcrumb url={match.url} name={`${brand.name}`} />
         </div>
-        <div className='sector__title font-bold size-32'>
-          {getInfoSector(sectorType).title}
-        </div>
-        <div className='sector__main d-flex'>
+        <BrandBanner
+          brand={brand}
+          brandFilter={brandFilter}
+          setBrandFilter={setBrandFilter}
+        />
+        <div className='brand__main d-flex'>
           <div className='main__filter'>
             {sectorItemExtent && (
               <SectorItemExtent
@@ -77,16 +65,16 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
               />
             )}
             <div className='filter__container position-sticky'>
-              <Filter filterType={`${sectorType}`} />
+              <Filter filterType={`${brandType}`} />
             </div>
           </div>
-          <div className='main__sector-content'>
-            <div className='sector-content__sort'>
+          <div className='main__brand-content'>
+            <div className='brand-content__sort'>
               <SectorSort sort={sort} handleSortClick={handleSortClick} />
             </div>
             {<SectorList sectorList={sectorList} />}
             {sectorList.length > 0 && (
-              <div className='sector-content__pagination d-flex justify-content-center'>
+              <div className='brand-content__pagination d-flex justify-content-center'>
                 <Pagination
                   total={sectorItemExtent?.total || 0}
                   page={page}

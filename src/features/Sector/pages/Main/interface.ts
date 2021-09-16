@@ -1,17 +1,11 @@
 import { IItem } from 'components/Item/interface'
-import { ISectorItemExtent } from 'features/Sector/components/SectorItemExtent/interface'
-import { IBrand } from 'features/Sector/interface'
+import { ISectorItemExtent } from 'components/SectorItemExtent/interface'
 
-export interface ISectorMain {
+export interface ISector {
   sectorType: 'laptop' | 'pc' | 'accessory'
-  brand?: IBrand
-}
-
-export interface ISectorItem extends IItem {
-  id: string
 }
 
 export interface IGetSectorListApi {
-  sectorList: ISectorItem[]
+  sectorList: IItem[]
   sectorItemExtent: ISectorItemExtent
 }

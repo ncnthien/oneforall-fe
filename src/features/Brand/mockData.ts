@@ -1,6 +1,6 @@
-import { IBrand } from 'features/Sector/interface'
+import { IBrandMain } from './pages/Main/interface'
 
-export const getBrandApi = (brandName: string): IBrand => {
+export const getBrandApi = (brandName: string): IBrandMain['brand'] => {
   if (brandName === 'dell') {
     return {
       name: 'Dell',
