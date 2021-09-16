@@ -1,0 +1,25 @@
+@import 'assets/styles/variable.scss';
+
+.submitted-modal {
+  &__main {
+    padding: 16px;
+  }
+}
+
+.modal-open {
+  padding: 0 !important;
+
+  .modal {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &-dialog.submitted-modal__modal {
+      max-width: 620px;
+
+      .modal-content {
+        border-radius: 8px;
+      }
+    }
+  }
+}

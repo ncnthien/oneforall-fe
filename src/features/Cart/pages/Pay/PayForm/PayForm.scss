@@ -1,0 +1,53 @@
+@import 'assets/styles/variable.scss';
+
+.pay-form {
+  &__form-group {
+    max-width: 760px;
+    margin-bottom: 32px;
+
+    &--user {
+      .form-group__form {
+        .form__input {
+          flex: 0 0 50%;
+          padding: 0px 8px;
+        }
+      }
+    }
+
+    &--address {
+      .form-group__form {
+        .form__input {
+          flex: 0 0 calc(100% / 3);
+          padding: 0px 8px;
+
+          &:last-child {
+            flex: 0 0 100%;
+          }
+        }
+      }
+    }
+
+    .form-group__title {
+      padding: 0px 8px;
+      margin-bottom: 16px;
+    }
+
+    .form__input {
+      margin-bottom: 16px;
+
+      input {
+        height: 48px;
+        padding: 10px 16px;
+        border: 1px solid $cl_grey-background;
+        background: $cl_grey-background;
+        box-shadow: none;
+        transition: all 0.35s ease-in-out 0s;
+
+        &:hover,
+        &:focus {
+          border: 1px solid $cl_light-blue;
+        }
+      }
+    }
+  }
+}

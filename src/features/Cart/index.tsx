@@ -1,7 +1,8 @@
 import { MainLayout } from 'layouts'
 import { Switch, useRouteMatch } from 'react-router-dom'
+import PrivateRoute from 'routes/PrivateRoute'
 import PublicRoute from 'routes/PublicRoute'
-import { Main } from './pages/'
+import { Main, Pay } from './pages/'
 
 const Cart: React.FC = () => {
   const match = useRouteMatch()
@@ -12,6 +13,12 @@ const Cart: React.FC = () => {
         path={match.url}
         exact
         component={Main}
+        layout={MainLayout}
+      />
+      <PrivateRoute
+        path={`${match.url}/pay`}
+        exact
+        component={Pay}
         layout={MainLayout}
       />
     </Switch>

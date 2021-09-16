@@ -1,0 +1,89 @@
+@import 'assets/styles/variable.scss';
+
+.pay {
+  margin: 30px 0px 50px 0px;
+
+  .pay__main {
+    .pay__form {
+      width: 75%;
+      padding: 32px 16px;
+      margin: -1px 0px 0px -1px;
+      border: 1px solid $cl_grey-border;
+    }
+
+    .pay__calculation {
+      width: 25%;
+      border: 1px solid $cl_grey-border;
+      margin: -1px 0px 0px -1px;
+
+      .calculation__temporary {
+        border-bottom: 1px solid $cl_grey-border;
+      }
+
+      .calculation__quantity {
+        border-bottom: 1px solid $cl_grey-border;
+
+        a {
+          color: unset;
+          text-decoration: none;
+          padding-right: 16px;
+
+          &::after {
+            position: absolute;
+            top: 5px;
+            right: 0px;
+            width: 10px;
+            height: 10px;
+            border-left: 2px solid $cl_light-black;
+            border-bottom: 2px solid $cl_light-black;
+            transform: rotate(-135deg);
+            content: '';
+          }
+        }
+      }
+
+      .calculation__pay-list {
+        .pay-list__item {
+          border-bottom: 1px solid $cl_grey-border;
+
+          .item__content {
+            .item__quantity {
+              color: $cl_light-blue;
+            }
+          }
+
+          .item__price {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+
+  .pay__btn-wrapper {
+    .pay__btn {
+      height: 48px;
+      padding: 0 40px;
+      margin-right: 24px;
+      border-radius: 56px;
+      line-height: 48px;
+      text-align: center;
+      transition: all 0.35s ease-in-out 0s;
+      cursor: pointer;
+
+      &--light-blue {
+        background: $cl_light-blue;
+        color: $cl_white;
+      }
+
+      &--white {
+        border: 1px solid $cl_grey-border;
+
+        &:hover {
+          background: #2c95a0;
+          color: $cl_white;
+        }
+      }
+    }
+  }
+}
