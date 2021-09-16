@@ -391,7 +391,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
                       className='authentication__btn'
                       onClick={() => {
                         setShowAuthModal(true)
-                        setActiveAuthModalTab(EAuthModalTab.LOGOUT)
+                        setActiveAuthModalTab(EAuthModalTab.REGISTER)
                       }}
                     >
                       Tạo tài khoản

@@ -1,31 +1,18 @@
 import { MainLayout } from 'layouts'
-import { useEffect, useState } from 'react'
-import { Switch, useParams, useRouteMatch } from 'react-router-dom'
+import { Switch, useRouteMatch } from 'react-router-dom'
 import PublicRoute from 'routes/PublicRoute'
-import { IBrand, ISector } from './interface'
-import { getBrandApi } from './mockData'
 import { Main } from './pages'
+import { ISector } from './pages/Main/interface'
 
-const Sector: React.FC<ISector> = ({ sectorType, brandPage }) => {
-  const [brand, setBrand] = useState<IBrand>()
+const Sector: React.FC<ISector> = ({ sectorType }) => {
   const match = useRouteMatch()
-  const { brandName } = useParams<{ brandName: string }>()
-
-  useEffect(() => {
-    // Get info brand from API here
-    if (brandPage) {
-      setBrand(getBrandApi(brandName))
-    }
-  }, [])
 
   return (
     <Switch>
       <PublicRoute
         path={match.url}
         exact={true}
-        component={() => (
-          <Main sectorType={sectorType} brand={brandPage ? brand : undefined} />
-        )}
+        component={() => <Main sectorType={sectorType} />}
         layout={MainLayout}
       />
     </Switch>
