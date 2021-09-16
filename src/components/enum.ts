@@ -1,6 +1,6 @@
 export enum EAuthModalTab {
   LOGIN = 'LOGIN',
-  LOGOUT = 'LOGOUT',
+  REGISTER = 'REGISTER',
 }
 
 export enum EPagination {
