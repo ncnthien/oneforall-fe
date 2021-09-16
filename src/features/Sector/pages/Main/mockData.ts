@@ -1,4 +1,5 @@
-import { IGetSectorListApi, ISectorItem } from './interface'
+import { IItem } from 'components/Item/interface'
+import { IGetSectorListApi } from './interface'
 
 // fake api is here to get the filtered lapLopList and sectorItemExtent  by page
 export const getSectorListApi = (
@@ -65,7 +66,7 @@ export const getSectorListApi = (
   }
 }
 
-export const sectorMockData: ISectorItem[] = [
+export const sectorMockData: IItem[] = [
   {
     id: '4675df7b-9895-40bc-ad7e-5a3928f064bd',
     url: 'https://www.fillmurray.com/640/360',

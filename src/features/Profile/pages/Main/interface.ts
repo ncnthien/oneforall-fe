@@ -8,6 +8,6 @@ export interface INavList {
 export interface IUserForm {
   username: string
   email: string
-  avatar?: string | ArrayBuffer | null
+  avatar: string | ArrayBuffer | null
   phone?: string
 }
