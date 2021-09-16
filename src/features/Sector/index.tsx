@@ -4,7 +4,7 @@ import { Switch, useParams, useRouteMatch } from 'react-router-dom'
 import PublicRoute from 'routes/PublicRoute'
 import { IBrand, ISector } from './interface'
 import { getBrandApi } from './mockData'
-import { Main } from './pages'
+import { Main, Detail } from './pages'
 
 const Sector: React.FC<ISector> = ({ sectorType, brandPage }) => {
   const [brand, setBrand] = useState<IBrand>()
@@ -26,6 +26,12 @@ const Sector: React.FC<ISector> = ({ sectorType, brandPage }) => {
         component={() => (
           <Main sectorType={sectorType} brand={brandPage ? brand : undefined} />
         )}
+        layout={MainLayout}
+      />
+      <PublicRoute
+        path={`${match.url}/:productName`}
+        exact
+        component={() => <Detail sectorType={sectorType} />}
         layout={MainLayout}
       />
     </Switch>
