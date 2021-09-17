@@ -19,7 +19,12 @@ const AuthModal: React.FC<IAuthModal> = ({
 
   return (
     <div className='auth-modal'>
-      <Modal isOpen={show} toggle={toggleShowAuthModal} centered>
+      <Modal
+        isOpen={show}
+        toggle={toggleShowAuthModal}
+        centered
+        className='auth-modal__modal'
+      >
         <div className='auth-modal__header d-flex'>
           <div
             className={`auth-modal-tab__nav position-relative d-flex justify-content-center align-items-center font-bold size-20 ${

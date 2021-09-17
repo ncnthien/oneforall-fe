@@ -33,7 +33,7 @@
       display: none;
     }
 
-    &-dialog {
+    &-dialog.auth-modal__modal {
       max-width: 440px;
 
       .modal-content {

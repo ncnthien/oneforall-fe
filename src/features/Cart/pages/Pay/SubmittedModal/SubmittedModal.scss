@@ -1,0 +1,66 @@
+@import 'assets/styles/variable.scss';
+
+.submitted-modal {
+  &__main {
+    padding: 16px;
+
+    .main__title {
+      margin-bottom: 24px;
+    }
+
+    .main__message {
+      margin-bottom: 32px;
+
+      .message__icon {
+        width: 88px;
+        height: 88px;
+        margin-bottom: 16px;
+        border-radius: 50%;
+        background: #ebf5f7;
+      }
+    }
+
+    .main__content {
+      padding: 16px;
+      margin-bottom: 32px;
+      border-radius: 4px;
+      background: $cl_input-grey;
+
+      div:not(:last-child) {
+        margin-bottom: 16px;
+      }
+    }
+
+    .main__btn {
+      margin-bottom: 16px;
+
+      a {
+        height: 48px;
+        padding: 0 40px;
+        border-radius: 56px;
+        background: $cl_light-blue;
+        color: unset;
+        text-decoration: none;
+        line-height: 48px;
+        transition: all 0.35s ease-in-out 0s;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.modal-open {
+  padding: 0 !important;
+
+  .modal {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &-dialog.submitted-modal__modal {
+      .modal-content {
+        border-radius: 8px;
+      }
+    }
+  }
+}
