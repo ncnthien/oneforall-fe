@@ -44,34 +44,35 @@ const Footer: React.FC = () => {
               <div className='footer-content__title font-bold size-16'>
                 Sản phẩm & dịch vụ
               </div>
-              <div className='footer-content__nav size-14'>
-                <Link to='/dell'>Laptop Dell</Link>
-              </div>
-              <div className='footer-content__nav size-14'>
-                <Link to='/hp'>Laptop HP</Link>
-              </div>
-              <div className='footer-content__nav size-14'>
-                <Link to='/thinkpad'>Laptop ThinkPad</Link>
-              </div>
-              <div className='footer-content__nav size-14'>
-                <Link to='/lenovo'>Laptop Lenovo</Link>
-              </div>
-            </div>
-            <div className='footer-content__item'>
-              <div className='footer-content__title opacity-0 font-bold size-16'>
-                null
-              </div>
-              <div className='footer-content__nav size-14'>
-                <Link to='/#'>Alienware</Link>
-              </div>
-              <div className='footer-content__nav size-14'>
-                <Link to='/apple'>Macbook</Link>
-              </div>
-              <div className='footer-content__nav size-14'>
-                <Link to='/razer'>Laptop Razer</Link>
-              </div>
-              <div className='footer-content__nav size-14'>
-                <Link to='/accessory'>Phụ kiện</Link>
+              <div className='d-flex flex-wrap'>
+                <div className='w-50'>
+                  <div className='footer-content__nav size-14'>
+                    <Link to='/brand/dell'>Laptop Dell</Link>
+                  </div>
+                  <div className='footer-content__nav size-14'>
+                    <Link to='/brand/hp'>Laptop HP</Link>
+                  </div>
+                  <div className='footer-content__nav size-14'>
+                    <Link to='/brand/thinkpad'>Laptop ThinkPad</Link>
+                  </div>
+                  <div className='footer-content__nav size-14'>
+                    <Link to='/brand/lenovo'>Laptop Lenovo</Link>
+                  </div>
+                </div>
+                <div className='w-50'>
+                  <div className='footer-content__nav size-14'>
+                    <Link to='/#'>Alienware</Link>
+                  </div>
+                  <div className='footer-content__nav size-14'>
+                    <Link to='/apple'>Macbook</Link>
+                  </div>
+                  <div className='footer-content__nav size-14'>
+                    <Link to='/razer'>Laptop Razer</Link>
+                  </div>
+                  <div className='footer-content__nav size-14'>
+                    <Link to='/accessory'>Phụ kiện</Link>
+                  </div>
+                </div>
               </div>
             </div>
             <div className='footer-content__item'>
@@ -133,8 +134,8 @@ const Footer: React.FC = () => {
           <div>
             <div>Copyright (C) 2020</div>
             <div>
-              Công ty TNHH Công nghệ oneforall Việt Nam | Số ĐKKD 0783071470 do
-              Sở KHĐT Thành phố Đà Nẵng cấp ngày 26/8/2021
+              Công ty TNHH Công nghệ oneforall Việt Nam | Số ĐKKD 0782367185 do
+              Sở KHĐT Thành phố Đà Nẵng cấp ngày 26/08/2021
             </div>
           </div>
           <div>

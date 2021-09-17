@@ -31,6 +31,10 @@
         .footer-content__item {
           flex: 0 0 25%;
 
+          &:nth-child(1) {
+            flex: 0 0 50%;
+          }
+
           .footer-content__title {
             margin-bottom: 16px;
           }

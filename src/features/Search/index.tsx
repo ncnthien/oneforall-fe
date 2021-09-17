@@ -1,28 +1,21 @@
 import { MainLayout } from 'layouts'
 import { Switch, useRouteMatch } from 'react-router-dom'
 import PrivateRoute from 'routes/PrivateRoute'
-import PublicRoute from 'routes/PublicRoute'
-import { Main, Pay } from './pages/'
+import { Main } from './pages'
 
-const Cart: React.FC = () => {
+const Search: React.FC = () => {
   const match = useRouteMatch()
 
   return (
     <Switch>
-      <PublicRoute
-        path={match.url}
-        exact
-        component={Main}
-        layout={MainLayout}
-      />
       <PrivateRoute
-        path={`${match.url}/pay`}
-        exact
-        component={Pay}
+        path={match.url}
+        exact={true}
+        component={Main}
         layout={MainLayout}
       />
     </Switch>
   )
 }
 
-export default Cart
+export default Search

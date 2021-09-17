@@ -1,0 +1,85 @@
+@import 'assets/styles/variable.scss';
+
+.online-pay-modal {
+  &__main {
+    padding: 16px;
+
+    .main__title {
+      margin-bottom: 24px;
+    }
+
+    .main__message {
+      padding: 16px;
+      margin-bottom: 24px;
+      border-radius: 4px;
+      background: $cl_input-grey;
+    }
+
+    .main__wrapper {
+      .wrapper__title {
+        margin-bottom: 16px;
+      }
+
+      .wrapper__payment {
+        margin-bottom: 8px;
+
+        .payment__item {
+          margin-right: 8px;
+          border: 1px solid $cl_grey-border;
+          border-radius: 4px;
+          cursor: pointer;
+
+          &--active {
+            border: 1px solid $cl_light-blue;
+          }
+        }
+      }
+
+      .wrapper__tab {
+        margin-bottom: 16px;
+
+        .tab__content {
+          padding: 24px;
+          border: 1px solid $cl_grey-border;
+          border-radius: 4px;
+
+          div:not(:last-child) {
+            margin-bottom: 24px;
+          }
+        }
+      }
+
+      .wrapper__btn {
+        button {
+          height: 48px;
+          padding: 0 40px;
+          border: none;
+          border-radius: 56px;
+          background: $cl_light-blue;
+          line-height: 48px;
+          box-shadow: none;
+          transition: all 0.35s ease-in-out 0s;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.modal-open {
+  padding: 0 !important;
+
+  .modal {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &-dialog.online-pay-modal__modal {
+      max-width: 600px;
+
+      .modal-content {
+        border-radius: 8px;
+      }
+    }
+  }
+}

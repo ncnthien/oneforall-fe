@@ -1,13 +1,12 @@
+import { useAppDispatch } from 'app/hooks'
+import { shoppingLogo } from 'assets/images'
 import { Breadcrumb } from 'components'
+import { add } from 'features/Cart/Cart.slice'
 import { useEffect, useState } from 'react'
-import { IDetail } from './interface'
+import { Link } from 'react-router-dom'
+import { IDetail, Product } from './interface'
 import './Main.scss'
 import { getDetailProduct } from './mockData'
-import { Product } from './interface'
-import { Link } from 'react-router-dom'
-import { shoppingLogo } from 'assets/images'
-import { useAppDispatch } from 'app/hooks'
-import { add } from 'features/Cart/Cart.slice'
 
 // Check if there is a state passed from  <Link /> to organize <Breadcrumb />
 // If there is no state received, check type of detail to organize <Breadcrumb />

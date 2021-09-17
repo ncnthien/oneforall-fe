@@ -47,7 +47,7 @@ const Main: React.FC = () => {
           </div>
           <div className='calculation__footer px-3 py-3'>
             <Link
-              to='/pay'
+              to={`cart/pay`}
               className='calculation__btn w-100 d-block text-center text-decoration-none font-bold size-14 color-white'
             >
               Tiến hành đặt hàng
