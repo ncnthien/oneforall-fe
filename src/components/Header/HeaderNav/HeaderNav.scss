@@ -1,0 +1,106 @@
+@import 'assets/styles/variable.scss';
+@import 'assets/styles/typography.scss';
+
+%headerHidden {
+  transition: all 0.35s ease-in-out 0s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+%headerShow {
+  visibility: visible;
+  opacity: 1;
+}
+
+.header-nav {
+  margin-left: 24px;
+  padding-left: 10px;
+
+  &__item {
+    width: 80px;
+
+    &:hover > a {
+      font-family: 'Montserrat-SemiBold';
+      color: $cl_dark-blue;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &:hover > .header-menu {
+      @extend %headerShow;
+    }
+
+    & > a {
+      color: $cl_price-black;
+      text-decoration: none;
+
+      &::after {
+        position: absolute;
+        bottom: 0px;
+        width: 0px;
+        height: 2px;
+        background: $cl_dark-blue;
+        transition: all 0.35s ease-in-out 0s;
+        content: '';
+      }
+    }
+
+    .header-menu {
+      @extend %headerHidden;
+      border-top: 1px solid $cl_grey-border;
+      border-radius: 0px 0px 8px 8px;
+      background: $cl_white;
+      overflow: hidden;
+
+      &__list {
+        &-item {
+          flex: 0 0 calc(100% / 5);
+          padding: 20px 16px 16px;
+          border-right: 1px solid $cl_white-border;
+          border-bottom: 1px solid $cl_white-border;
+
+          &:nth-child(5n) {
+            border-right: none;
+          }
+
+          .header-menu__list-title {
+            margin-bottom: 8px;
+
+            & > a {
+              color: $cl_price-black;
+              text-decoration: none;
+            }
+          }
+
+          .header-menu__list-content {
+            padding: 4px 0px;
+            transition: all 0.35s ease-in-out 0s;
+            cursor: pointer;
+
+            a {
+              color: unset;
+              text-decoration: none;
+              font-family: 'Montserrat-Regular';
+            }
+
+            &:hover {
+              color: $cl_light-blue;
+            }
+          }
+        }
+      }
+
+      &__support {
+        flex: 0 0 calc(100% / 6);
+        padding: 20px 16px 16px;
+        border-left: 1px solid $cl_white-border;
+
+        div:nth-last-child(1) {
+          color: $cl_light-blue;
+        }
+      }
+    }
+  }
+}

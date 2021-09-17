@@ -13,7 +13,7 @@ const AuthModal: React.FC<IAuthModal> = ({
 }) => {
   const toggleShowAuthModal = (): void => setShow(!show)
 
-  const toggleShowAuthModalTab = (tab: string): void => {
+  const toggleShowAuthModalTab = (tab: EAuthModalTab): void => {
     if (activeTab !== tab) setActiveTab(tab)
   }
 

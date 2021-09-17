@@ -1,0 +1,32 @@
+@import 'assets/styles/variable.scss';
+
+.search-input {
+  width: 400px;
+  margin-left: 36px;
+
+  & > input {
+    height: 40px;
+    padding: 0px 60px 0px 16px;
+    border: 1px solid $cl_grey-border;
+    border-radius: 50px;
+    background: $cl_input-grey;
+    transition: all 0.35s ease-in-out 0s;
+
+    &:hover {
+      border: 1px solid $cl_light-blue;
+    }
+
+    &:focus {
+      border: 1px solid $cl_light-blue;
+      box-shadow: none;
+    }
+  }
+
+  &__btn {
+    top: 0px;
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+}
