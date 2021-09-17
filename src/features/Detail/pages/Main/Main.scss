@@ -1,0 +1,117 @@
+@import 'assets/styles/variable.scss';
+
+.detail {
+  margin: 40px 0px;
+
+  .container {
+    .detail__main {
+      .detail__left {
+        width: 55%;
+
+        .detail__slide {
+          .detail__slide-list {
+            top: 0px;
+            left: 0px;
+            transition: all 0.35s ease-in-out 0s;
+
+            .detail__slide-item {
+              list-style-type: none;
+            }
+          }
+        }
+
+        .detail__slide-btn-wrapper {
+          top: calc(50% - 80px);
+
+          &:nth-child(2) {
+            left: 3%;
+          }
+
+          &:nth-child(3) {
+            right: 3%;
+          }
+
+          .detail__prev-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            background-color: $cl_grey-border;
+
+            &::after {
+              position: absolute;
+              border-bottom: 1px solid $cl_black;
+              border-left: 1px solid $cl_black;
+              content: '';
+              display: block;
+              width: 10px;
+              height: 10px;
+              top: 50%;
+              left: 52%;
+              transform: translate(-50%, -50%) rotate(45deg);
+            }
+          }
+
+          .detail__next-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            background-color: $cl_grey-border;
+
+            &::after {
+              position: absolute;
+              border-top: 1px solid $cl_black;
+              border-left: 1px solid $cl_black;
+              content: '';
+              display: block;
+              width: 10px;
+              height: 10px;
+              top: 50%;
+              left: 48%;
+              transform: translate(-50%, -50%) rotate(135deg);
+            }
+          }
+        }
+
+        .detail__preview-list {
+          .detail__preview-item {
+            list-style-type: none;
+            cursor: pointer;
+            border: 2px solid $cl_grey-border;
+            border-radius: 4px;
+
+            &.detail__preview-item--active {
+              border: 2px solid $cl_light-blue;
+            }
+
+            .detail__preview-img {
+              width: 50px;
+            }
+          }
+        }
+      }
+      .detail__right {
+        width: 45%;
+
+        .detail__main {
+          .detail__brand {
+            img {
+              width: 50px;
+            }
+          }
+
+          .detail__add-btn {
+            border: none;
+            border-radius: 100px;
+            background-color: $cl_light-blue;
+
+            img {
+              width: 28px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
