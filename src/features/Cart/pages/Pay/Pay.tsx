@@ -42,6 +42,7 @@ const Pay: React.FC = () => {
       <SubmittedModal
         show={showSubmittedModal}
         setShow={setShowSubmittedModal}
+        cost={cost}
       />
       <OnlinePayModal
         show={showOnlinePayModal}

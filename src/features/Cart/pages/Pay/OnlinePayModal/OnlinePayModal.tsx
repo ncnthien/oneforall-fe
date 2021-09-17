@@ -1,10 +1,10 @@
 import { agribankImg, vietcombankImg } from 'assets/images'
 import { useState } from 'react'
 import { Modal, TabContent, TabPane } from 'reactstrap'
-import { ISubmittedModal } from '../SubmittedModal/interface'
+import { IOnlinePayModal } from './interface'
 import './OnlinePayModal.scss'
 
-const OnlinePayModal: React.FC<ISubmittedModal> = ({ show, setShow }) => {
+const OnlinePayModal: React.FC<IOnlinePayModal> = ({ show, setShow }) => {
   const [activeTab, setActiveTab] = useState<'payment-1' | 'payment-2'>(
     'payment-1'
   )
