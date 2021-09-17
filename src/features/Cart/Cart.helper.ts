@@ -8,8 +8,8 @@ export const getCost = (cart: CartItem[]): number => {
   return cart.reduce(
     (cost, item) =>
       item.isSale && item.reducedPrice
-        ? cost + item.reducedPrice
-        : cost + item.price,
+        ? cost + item.reducedPrice * item.quantity
+        : cost + item.price * item.quantity,
     0
   )
 }
