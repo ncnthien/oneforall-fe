@@ -28,7 +28,7 @@ const SearchInput: React.FC = () => {
 
   const handleSubmit = (): void => {
     if (value) {
-      history.push(`search?q=${value}`)
+      history.push(`/search?q=${value}`)
     }
   }
 
