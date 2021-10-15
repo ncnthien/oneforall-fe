@@ -1,4 +1,3 @@
-import { FacebookBtnIcon, GoogleBtnIcon } from 'assets/images/svgs'
 import { FormGroup, Input } from 'reactstrap'
 import './RegisterForm.scss'
 
@@ -51,23 +50,6 @@ const RegisterForm: React.FC = () => {
         <button className='d-flex justify-content-center align-items-center w-100 font-bold color-white'>
           Đăng ký
         </button>
-      </div>
-      <div className='register-form__line position-relative text-center'>
-        <span className='position-relative'>Hoặc đăng ký thông qua</span>
-      </div>
-      <div className='register-form__btn-container'>
-        <div className='register-form__btn light-btn'>
-          <button className='d-flex justify-content-center align-items-center w-100 font-bold'>
-            <GoogleBtnIcon />
-            <span>Google</span>
-          </button>
-        </div>
-        <div className='register-form__btn light-btn'>
-          <button className='d-flex justify-content-center align-items-center w-100 font-bold'>
-            <FacebookBtnIcon />
-            <span>Facebook</span>
-          </button>
-        </div>
       </div>
     </div>
   )
