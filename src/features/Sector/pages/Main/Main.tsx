@@ -71,7 +71,7 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
           <div className='main__filter'>
             {sectorItemExtent && (
               <SectorItemExtent
-                start={sectorList.length ? sectorItemExtent.start + 1 : 0}
+                start={sectorItemExtent.start}
                 end={sectorItemExtent.end}
                 total={sectorItemExtent.total}
               />
