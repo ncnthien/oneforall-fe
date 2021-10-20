@@ -1,12 +1,9 @@
+import { dropdownApi } from 'api/dropdownApi'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IProps } from '../Header'
 import './HeaderNav.scss'
-import { IDropdownItem } from './interface'
-import {
-  accessoryDropdownList,
-  laptopDropdownList,
-  pcDropdownList,
-} from './mockData'
+import { IHeaderNav, IDropdownItem } from './interface'
 
 const lastDropdownItem = (
   <div key='lastDropdownItem' className='header-menu__list-item'>
@@ -36,6 +33,30 @@ const headerMenuSupport = (
 )
 
 const HeaderNav: React.FC<IProps> = ({ setShowOverlay }) => {
+  const [laptopDropdownList, setLaptopDropdownList] = useState<
+    IHeaderNav['laptopDropdownList']
+  >([])
+  const [pcDropdownList, setPcDropdownList] = useState<
+    IHeaderNav['pcDropdownList']
+  >([])
+
+  useEffect(() => {
+    const fetchDropdownApi = async () => {
+      try {
+        const {
+          data: { laptopDropdownList, pcDropdownList },
+        } = await dropdownApi.get()
+
+        setLaptopDropdownList(laptopDropdownList)
+        setPcDropdownList(pcDropdownList)
+      } catch (err) {
+        return
+      }
+    }
+
+    fetchDropdownApi()
+  }, [])
+
   const renderDropdownList = (dropdownList: IDropdownItem[]) => {
     const dropDownListWithLastDropdownItem: JSX.Element[] = []
 
@@ -43,13 +64,10 @@ const HeaderNav: React.FC<IProps> = ({ setShowOverlay }) => {
       dropDownListWithLastDropdownItem.push(
         <div key={dropdownItem.id} className='header-menu__list-item'>
           <div className='header-menu__list-title font-bold size-18'>
-            <Link to={dropdownItem.url}>{dropdownItem.title}</Link>
-            {dropdownItem.contentList.map(content => (
-              <div
-                key={content.id}
-                className='header-menu__list-content size-14'
-              >
-                <Link to={content.url}>{content.data}</Link>
+            <Link to={dropdownItem.brandUrl}>{dropdownItem.brand}</Link>
+            {dropdownItem.subBrandList.map(item => (
+              <div key={item.id} className='header-menu__list-content size-14'>
+                <Link to={item.queryUrl}>{item.subBrand}</Link>
               </div>
             ))}
           </div>
@@ -63,6 +81,8 @@ const HeaderNav: React.FC<IProps> = ({ setShowOverlay }) => {
 
     return dropDownListWithLastDropdownItem
   }
+
+  const accessoryDropdownList: IDropdownItem[] = []
 
   return (
     <div className='header-nav d-flex align-items-center h-100'>
