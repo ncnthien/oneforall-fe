@@ -46,10 +46,10 @@ const AuthModal: React.FC<IAuthModal> = ({
         <div className='auth-modal-tab'>
           <TabContent activeTab={activeTab}>
             <TabPane tabId={EAuthModalTab.LOGIN}>
-              <LoginForm />
+              <LoginForm setShow={setShow} />
             </TabPane>
             <TabPane tabId={EAuthModalTab.REGISTER}>
-              <RegisterForm />
+              <RegisterForm setShow={setShow} />
             </TabPane>
           </TabContent>
         </div>

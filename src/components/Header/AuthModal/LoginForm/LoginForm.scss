@@ -21,7 +21,14 @@
       &:hover,
       &:focus {
         border: 1px solid $cl_light-blue;
+        outline: none;
       }
+    }
+
+    error {
+      color: $cl_red;
+      display: block;
+      margin-top: 16px;
     }
   }
 

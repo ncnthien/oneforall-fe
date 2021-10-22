@@ -1,69 +1,167 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import authApi from 'apis/authApi'
+import { useAppDispatch } from 'app/hooks'
 import { FacebookBtnIcon, GoogleBtnIcon } from 'assets/images/svgs'
+import {
+  LoginBody,
+  LoginFormProps,
+} from 'components/Header/AuthModal/interface'
+import { getProfile } from 'features/Profile/Profile.slice'
+import {
+  ErrorMessage,
+  Field,
+  Form,
+  Formik,
+  FormikHelpers,
+  FormikValues,
+} from 'formik'
+import { useState } from 'react'
 import { ReactFacebookLoginInfo } from 'react-facebook-login'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import GoogleLogin, {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
 } from 'react-google-login'
-import { FormGroup, Input } from 'reactstrap'
+import { FormGroup } from 'reactstrap'
+import * as Yup from 'yup'
 import './LoginForm.scss'
 
-const LoginForm: React.FC = () => {
+const LoginSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string()
+    .min(4, 'At least 4 character')
+    .max(40, 'Maximum is 40 character')
+    .required('Password is required'),
+})
+
+const LoginForm: React.FC<LoginFormProps> = ({ setShow }) => {
+  const jwtTokenKey = 'jwtToken'
+  const [error, setError] = useState<string>('')
+  const defaultLoginForm: LoginBody = { email: '', password: '' }
   const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
   const appId = process.env.REACT_APP_FACEBOOK_APP_ID
+  const dispatch = useAppDispatch()
 
-  const responseSuccessGoogle = (
+  const responseSuccessGoogle = async (
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
-    console.log('Google success', response)
+    if (!('tokenId' in response)) {
+      return
+    }
+
+    try {
+      const {
+        data: { token },
+      } = await authApi.googleLogin({
+        tokenId: response.tokenId,
+      })
+
+      localStorage.setItem(jwtTokenKey, token)
+      dispatch(getProfile())
+      setShow(false)
+    } catch (error) {
+      // Handle UI if error occurs here
+      console.log(error)
+    }
   }
 
-  const responseFailureGoogle = (
-    response: GoogleLoginResponse | GoogleLoginResponseOffline
+  const responseFailureGoogle = async (error: any) => {
+    // Handle UI if error occurs here
+    console.log(error)
+  }
+
+  const responseFacebook = async (response: ReactFacebookLoginInfo) => {
+    try {
+      const {
+        data: { token },
+      } = await authApi.facebookLogin({
+        accessToken: response.accessToken,
+      })
+
+      localStorage.setItem(jwtTokenKey, token)
+      dispatch(getProfile())
+      setShow(false)
+    } catch (error) {
+      // Handle UI if error occurs here
+      console.log(error)
+    }
+  }
+
+  const handleFormSubmit = async (
+    values: FormikValues,
+    actions: FormikHelpers<LoginBody>
   ) => {
-    console.log(clientId)
-    console.log('Google failure', response)
-  }
+    try {
+      actions.setSubmitting(true)
+      const loginBody = { ...values } as LoginBody
+      const {
+        data: { token },
+      } = await authApi.login(loginBody)
 
-  const responseFacebook = (response: ReactFacebookLoginInfo) => {
-    console.log(response)
+      localStorage.setItem(jwtTokenKey, token)
+      dispatch(getProfile())
+      actions.setSubmitting(false)
+      setShow(false)
+    } catch (error) {
+      setError(error as string)
+      actions.setSubmitting(false)
+    }
   }
 
   return (
     <div className='login-form'>
-      <FormGroup>
-        <label
-          htmlFor='loginEmail'
-          className='login-form__label font-bold size-16'
-        >
-          Email
-        </label>
-        <Input
-          type='email'
-          name='email'
-          id='loginEmail'
-          placeholder='Nhập email'
-        />
-      </FormGroup>
-      <FormGroup>
-        <label
-          htmlFor='loginPassword'
-          className='login-form__label font-bold size-16'
-        >
-          Mật khẩu
-        </label>
-        <Input
-          type='password'
-          name='password'
-          id='loginPassword'
-          placeholder='Nhập mật khẩu'
-        />
-      </FormGroup>
-      <div className='login-form__btn'>
-        <button className='d-flex justify-content-center align-items-center w-100 font-bold color-white'>
-          Đăng nhập
-        </button>
-      </div>
+      <Formik
+        initialValues={defaultLoginForm}
+        onSubmit={handleFormSubmit}
+        validationSchema={LoginSchema}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <FormGroup>
+              <label
+                htmlFor='email'
+                className='login-form__label font-bold size-16'
+              >
+                Email
+              </label>
+              <Field
+                id='email'
+                name='email'
+                placeholder='Nhập email'
+                className='d-block w-100'
+              />
+              <ErrorMessage name='email' component='error' />
+            </FormGroup>
+            <FormGroup>
+              <label
+                htmlFor='password'
+                className='login-form__label font-bold size-16'
+              >
+                Mật khẩu
+              </label>
+              <Field
+                id='password'
+                name='password'
+                type='password'
+                placeholder='Nhập password'
+                className='d-block w-100'
+              />
+              <ErrorMessage name='password' component='error' />
+              {error && <div className='color-red mt-4'>{error}</div>}
+            </FormGroup>
+            <div className='login-form__btn'>
+              <button
+                type='submit'
+                className='d-flex justify-content-center align-items-center w-100 font-bold color-white'
+                disabled={isSubmitting}
+              >
+                Đăng nhập
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+
       <div className='login-form__line position-relative text-center'>
         <span className='position-relative'>Hoặc đăng nhập thông qua</span>
       </div>
