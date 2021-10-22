@@ -1,3 +1,4 @@
+import { AxiosSetupInterceptors } from 'apis/axiosClient'
 import {
   Brand,
   Cart,
@@ -34,6 +35,7 @@ const Routes: React.FC = () => {
         <Route path='/search' component={() => <Search />} />
         <Route path='/' component={Home} />
       </Switch>
+      <AxiosSetupInterceptors />
     </BrowserRouter>
   )
 }
