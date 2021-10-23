@@ -9,6 +9,13 @@ export const store = configureStore({
     cart: cartReducer,
     profile: profileReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        // Ignore these action types
+        ignoredActions: ['profile/update/fulfilled'],
+      },
+    }),
 })
 
 export type AppDispatch = typeof store.dispatch

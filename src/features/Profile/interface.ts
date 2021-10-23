@@ -1,4 +1,4 @@
-interface DeliveryAddress {
+export interface DeliveryAddress {
   address: string
   ward: string
   district: string
@@ -6,6 +6,7 @@ interface DeliveryAddress {
 }
 
 export interface FetchedProfile {
+  _id: string
   email: string
   username: string
   avatar: string
@@ -16,4 +17,13 @@ export interface FetchedProfile {
 
 export interface ProfileState {
   profile: FetchedProfile | null
+}
+
+export interface ChangePasswordBody {
+  oldPassword: string
+  newPassword: string
+}
+
+export interface ChangePasswordForm extends ChangePasswordBody {
+  reNewPassword: string
 }

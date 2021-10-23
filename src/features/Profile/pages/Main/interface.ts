@@ -4,10 +4,3 @@ export interface INavList {
   icon: React.ElementType
   active?: boolean
 }
-
-export interface IUserForm {
-  username: string
-  email: string
-  avatar: string | ArrayBuffer | null
-  phone?: string
-}
