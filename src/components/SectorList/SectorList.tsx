@@ -7,16 +7,7 @@ const SectorList: React.FC<ISectorList> = ({ sectorList }) => {
     sectorList: ISectorList['sectorList']
   ): JSX.Element[] => {
     return sectorList.map(sectorItem => (
-      <Item
-        id={sectorItem.id}
-        key={sectorItem.id}
-        url={sectorItem.url}
-        img={sectorItem.img}
-        name={sectorItem.name}
-        isSale={sectorItem.isSale}
-        price={sectorItem.price}
-        reducedPrice={sectorItem.reducedPrice}
-      />
+      <Item key={sectorItem._id} {...sectorItem} />
     ))
   }
 

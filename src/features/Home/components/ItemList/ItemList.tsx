@@ -5,17 +5,7 @@ import './ItemList.scss'
 const ItemList: React.FC<IItemList> = ({ itemList }) => {
   const renderItemList = (): JSX.Element[] => {
     return itemList.map(item => (
-      <Item
-        id={item.id}
-        key={item.id}
-        url={item.url}
-        img={item.img}
-        name={item.name}
-        price={item.price}
-        isSale={item.isSale}
-        reducedPrice={item.reducedPrice}
-        className='itemlist__item'
-      />
+      <Item key={item._id} {...item} className='itemlist__item' />
     ))
   }
 

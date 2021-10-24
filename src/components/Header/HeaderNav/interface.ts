@@ -1,11 +1,11 @@
 export interface IContent {
-  id: string
+  _id: string
   subBrand: string
   queryUrl: string
 }
 
 export interface IDropdownItem {
-  id: string
+  _id: string
   brand: string
   brandUrl: string
   subBrandList: IContent[]

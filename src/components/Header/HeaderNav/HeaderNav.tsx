@@ -62,11 +62,11 @@ const HeaderNav: React.FC<IProps> = ({ setShowOverlay }) => {
 
     dropdownList.forEach(dropdownItem => {
       dropDownListWithLastDropdownItem.push(
-        <div key={dropdownItem.id} className='header-menu__list-item'>
+        <div key={dropdownItem._id} className='header-menu__list-item'>
           <div className='header-menu__list-title font-bold size-18'>
             <Link to={dropdownItem.brandUrl}>{dropdownItem.brand}</Link>
             {dropdownItem.subBrandList.map(item => (
-              <div key={item.id} className='header-menu__list-content size-14'>
+              <div key={item._id} className='header-menu__list-content size-14'>
                 <Link to={item.queryUrl}>{item.subBrand}</Link>
               </div>
             ))}

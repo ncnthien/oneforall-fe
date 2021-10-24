@@ -5,9 +5,8 @@ import './Item.scss'
 import { add } from 'features/Cart/Cart.slice'
 
 const Item: React.FC<IItem> = ({
-  id,
-  url,
-  img,
+  _id,
+  images,
   name,
   price,
   isSale,
@@ -18,9 +17,9 @@ const Item: React.FC<IItem> = ({
 
   const handleClick = () => {
     const item = {
-      id,
-      url,
-      img,
+      id: _id,
+      url: `/${name}`,
+      img: images[0],
       name,
       price,
       isSale,
@@ -37,12 +36,12 @@ const Item: React.FC<IItem> = ({
     >
       <div className='item p-3'>
         <Link
-          to={`${url}`}
+          to={`/${name}`}
           className='item__img-link d-block d-flex align-items-center justify-content-center'
         >
-          <img src={img} alt={name} className='item__img w-100' />
+          <img src={images[0]} alt={name} className='item__img w-100' />
         </Link>
-        <Link to={`${url}`} className='item__name-link d-block mt-2'>
+        <Link to={`/${name}`} className='item__name-link d-block mt-2'>
           <h6 className='item__name mb-0 size-16 color-black font-bold'>
             {name}
           </h6>

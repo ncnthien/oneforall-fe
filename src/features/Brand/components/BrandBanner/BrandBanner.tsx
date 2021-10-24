@@ -4,6 +4,7 @@ import { IBrandBanner } from './interface'
 const BrandBanner: React.FC<IBrandBanner> = ({
   brand,
   brandFilter,
+  total,
   setBrandFilter,
 }) => {
   return (
@@ -14,12 +15,12 @@ const BrandBanner: React.FC<IBrandBanner> = ({
             <div className='brand-text__title font-bold size-32'>
               {brand.name}
             </div>
-            <div className='brand-text__desc size-14'>{brand.desc}</div>
+            <div className='brand-text__desc size-14'>{brand.summary}</div>
           </div>
         </div>
         <div className='brand-container__brand-img position-relative'>
           <div className='brand-img__img position-absolute'>
-            <img src={brand.img} alt='' />
+            <img src={brand.banner} alt='' />
           </div>
           <div className='brand-img__logo position-absolute d-flex justify-content-center align-items-center'>
             <img src={brand.logo} alt='' />
@@ -34,7 +35,7 @@ const BrandBanner: React.FC<IBrandBanner> = ({
           onClick={() => setBrandFilter('laptop')}
         >
           <span className='font-bold'>Laptop</span>
-          <span>79</span>
+          <span>{total.laptop}</span>
         </div>
         <div
           className={`tab__item ${
@@ -43,7 +44,7 @@ const BrandBanner: React.FC<IBrandBanner> = ({
           onClick={() => setBrandFilter('pc')}
         >
           <span className='font-bold'>PC</span>
-          <span>2</span>
+          <span>{total.pc}</span>
         </div>
         <div
           className={`tab__item ${
@@ -52,7 +53,7 @@ const BrandBanner: React.FC<IBrandBanner> = ({
           onClick={() => setBrandFilter('accessory')}
         >
           <span className='font-bold'>Phụ kiện</span>
-          <span>4</span>
+          <span>{total.accessory}</span>
         </div>
       </div>
     </div>

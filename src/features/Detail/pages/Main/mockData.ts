@@ -2,7 +2,7 @@ import { Product } from './interface'
 
 export const getDetailProduct = (productName: string): Product => {
   return {
-    id: '6143069ebe756989f926b1bb',
+    _id: '6143069ebe756989f926b1bb',
     name: productName,
     url: productName,
     type: 'laptop',
@@ -37,7 +37,7 @@ export const getDetailProduct = (productName: string): Product => {
       },
       {
         name: 'Card đồ họa',
-        value: 'NVIDIA GeForce MX330 2GB GDDR5',
+        value: 'NV_IDIA GeForce MX330 2GB GDDR5',
       },
       {
         name: 'Lưu trữ',

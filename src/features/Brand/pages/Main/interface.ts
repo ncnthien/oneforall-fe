@@ -1,9 +1,11 @@
 export interface IBrandMain extends IBrand {
   brand: {
+    _id: string
     name: string
-    desc: string
+    value: string
+    summary: string
     logo: string
-    img: string
+    banner: string
   }
 }
 

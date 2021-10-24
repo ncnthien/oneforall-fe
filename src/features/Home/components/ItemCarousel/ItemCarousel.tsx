@@ -10,17 +10,7 @@ const ItemCarousel: React.FC<IItemCarousel> = ({ itemList }) => {
 
   const renderItemList = (): JSX.Element[] => {
     return itemList.map(item => (
-      <Item
-        key={item.id}
-        id={item.id}
-        url={item.url}
-        img={item.img}
-        name={item.name}
-        price={item.price}
-        isSale={item.isSale}
-        reducedPrice={item.reducedPrice}
-        className='itemcarousel__item'
-      />
+      <Item key={item._id} {...item} className='itemcarousel__item' />
     ))
   }
 
@@ -39,10 +29,14 @@ const ItemCarousel: React.FC<IItemCarousel> = ({ itemList }) => {
       <div className='itemcarousel__main position-relative overflow-hidden'>
         <div className='itemcarousel__brick'>
           <Item
-            id='brick'
-            url=''
-            img=''
+            _id='brick'
             name=''
+            type='laptop'
+            brand=''
+            subBrand=''
+            images={[]}
+            isSale={false}
+            quantity={0}
             price={0}
             className='invisible'
           />

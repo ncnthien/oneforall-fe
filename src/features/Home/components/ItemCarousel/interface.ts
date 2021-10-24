@@ -1,5 +1,5 @@
-import { Item } from '../ItemList/interface'
+import { IItem } from 'components/Item/interface'
 
 export interface IItemCarousel {
-  itemList: Item[]
+  itemList: IItem[]
 }

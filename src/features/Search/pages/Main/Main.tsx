@@ -9,7 +9,6 @@ import { EPagination } from 'components/enum'
 import { IItem } from 'components/Item/interface'
 import { ISectorItemExtent } from 'components/SectorItemExtent/interface'
 import { ISectorSort } from 'components/SectorSort/interface'
-import { getSectorListApi } from 'features/Sector/pages/Main/mockData'
 import queryString from 'query-string'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -27,14 +26,13 @@ const Main: React.FC = () => {
 
   useEffect(() => {
     // Get sector list from api here
-    const { sectorList, sectorItemExtent } = getSectorListApi(
-      page,
-      EPagination.PER_PAGE,
-      sort
-    )
-
-    setSectorItemExtent(sectorItemExtent)
-    setSectorList(sectorList)
+    // const { sectorList, sectorItemExtent } = getSectorListApi(
+    //   page,
+    //   EPagination.PER_PAGE,
+    //   sort
+    // )
+    // setSectorItemExtent(sectorItemExtent)
+    // setSectorList(sectorList)
   }, [page, sort, query])
 
   const handleSortClick: ISectorSort['handleSortClick'] = sort => {

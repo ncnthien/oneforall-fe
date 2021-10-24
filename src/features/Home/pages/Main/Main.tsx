@@ -1,9 +1,10 @@
+import { homeApi } from 'api/homeApi'
 import {
   BrandCarousel,
+  ItemCarousel,
   ItemList,
   PriceExtent,
   Section,
-  ItemCarousel,
   SlideBanner,
 } from 'features/Home/components/'
 import {
@@ -11,11 +12,46 @@ import {
   pcBrand,
 } from 'features/Home/components/BrandCarousel/mockData'
 import { extentList } from 'features/Home/components/PriceExtent/mockData'
+import { useEffect, useState } from 'react'
+import { Home } from './interface'
 import './Main.scss'
-import { laptopList, saleLaptopList, pcList, accessoryList } from './mockData'
-import { eventList } from 'features/Home/components/SlideBanner/mockData'
 
 const Main: React.FC = () => {
+  const [eventList, setEventList] = useState<Home['eventList']>([])
+
+  const [saleLaptopList, setSaleLaptopList] = useState<Home['saleLaptopList']>(
+    []
+  )
+  const [laptopList, setLaptopList] = useState<Home['laptopList']>([])
+  const [pcList, setPcList] = useState<Home['pcList']>([])
+  const [accessoryList, setAccessoryList] = useState<Home['accessoryList']>([])
+
+  useEffect(() => {
+    const fetchHomeApi = async () => {
+      try {
+        const {
+          data: {
+            eventList,
+            saleLaptopList,
+            laptopList,
+            pcList,
+            accessoryList,
+          },
+        } = await homeApi.get()
+
+        setEventList(eventList)
+        setSaleLaptopList(saleLaptopList)
+        setLaptopList(laptopList)
+        setPcList(pcList)
+        setAccessoryList(accessoryList)
+      } catch (err) {
+        return
+      }
+    }
+
+    fetchHomeApi()
+  }, [])
+
   return (
     <div className='home container'>
       <SlideBanner eventList={eventList} />

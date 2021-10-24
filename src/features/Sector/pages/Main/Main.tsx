@@ -1,3 +1,4 @@
+import { productApi } from 'api/productApi'
 import {
   Breadcrumb,
   Filter,
@@ -10,11 +11,12 @@ import { EPagination } from 'components/enum'
 import { IItem } from 'components/Item/interface'
 import { ISectorItemExtent } from 'components/SectorItemExtent/interface'
 import { ISectorSort } from 'components/SectorSort/interface'
+import queryString from 'query-string'
 import { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
+import { useLocation } from 'react-router-dom'
 import { ISector } from './interface'
 import './Main.scss'
-import { getSectorListApi } from './mockData'
 
 const Main: React.FC<ISector> = ({ sectorType }) => {
   const [sectorList, setSectorList] = useState<IItem[]>([])
@@ -23,18 +25,28 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
   const [sort, setSort] = useState<ISectorSort['sort']>()
 
   const match = useRouteMatch()
+  const location = useLocation()
 
   useEffect(() => {
-    // Get sector list from api here
-    const { sectorList, sectorItemExtent } = getSectorListApi(
-      page,
-      EPagination.PER_PAGE,
-      sort
-    )
+    const fetchProductApi = async () => {
+      try {
+        const {
+          data: { productList, productDisplay },
+        } = await productApi.get({
+          type: sectorType,
+          sort,
+          ...queryString.parse(location.search),
+          limit: EPagination.PER_PAGE,
+        })
+        setSectorList(productList)
+        setSectorItemExtent(productDisplay)
+      } catch (err) {
+        return
+      }
+    }
 
-    setSectorItemExtent(sectorItemExtent)
-    setSectorList(sectorList)
-  }, [page, sort])
+    fetchProductApi()
+  }, [page, sort, location.search])
 
   const getInfoSector = (
     sectorType: ISector['sectorType']
