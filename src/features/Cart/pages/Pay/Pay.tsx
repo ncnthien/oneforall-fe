@@ -48,7 +48,7 @@ const Pay: React.FC = () => {
         show={showOnlinePayModal}
         setShow={setShowOnlinePayModal}
       />
-      <Breadcrumb url='/cart' name='Giỏ hàng' />
+      <Breadcrumb url='/cart/pay' name='Đặt hàng' />
       <h1 className='pay__title font-bold size-32 mt-4 mb-3'>Đặt hàng</h1>
       <div className='pay__main d-flex align-items-start mb-4'>
         <div className='pay__form flex-grow-1'>

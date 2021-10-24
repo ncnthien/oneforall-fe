@@ -1,3 +1,4 @@
+import { brandApi, BrandProductData } from 'api/brandApi'
 import {
   Breadcrumb,
   Filter,
@@ -11,9 +12,9 @@ import { IItem } from 'components/Item/interface'
 import { ISectorItemExtent } from 'components/SectorItemExtent/interface'
 import { ISectorSort } from 'components/SectorSort/interface'
 import { BrandBanner } from 'features/Brand/components'
-import { getSectorListApi } from 'features/Sector/pages/Main/mockData'
+import queryString from 'query-string'
 import { useEffect, useState } from 'react'
-import { useRouteMatch } from 'react-router-dom'
+import { useLocation, useRouteMatch } from 'react-router-dom'
 import { IBrandMain } from './interface'
 import './Main.scss'
 
@@ -24,20 +25,43 @@ const Main: React.FC<IBrandMain> = ({ brand, brandType }) => {
   const [page, setPage] = useState<number>(1)
   const [sectorItemExtent, setSectorItemExtent] = useState<ISectorItemExtent>()
   const [sort, setSort] = useState<ISectorSort['sort']>()
+  const [total, setTotal] = useState<BrandProductData['total']>({
+    laptop: 0,
+    pc: 0,
+    accessory: 0,
+  })
 
   const match = useRouteMatch()
+  const location = useLocation()
 
   useEffect(() => {
-    // Get sector list from api here
-    const { sectorList, sectorItemExtent } = getSectorListApi(
-      page,
-      EPagination.PER_PAGE,
-      sort
-    )
+    const fetchProductApi = async () => {
+      try {
+        if (brand.value) {
+          const {
+            data: { productList, productDisplay, total },
+          } = await brandApi.getProductListOfBrand(
+            {
+              brand: brand.value,
+              type: brandFilter,
+              sort,
+              ...queryString.parse(location.search),
+              limit: EPagination.PER_PAGE,
+            },
+            brand._id
+          )
 
-    setSectorItemExtent(sectorItemExtent)
-    setSectorList(sectorList)
-  }, [page, sort])
+          setSectorList(productList)
+          setSectorItemExtent(productDisplay)
+          setTotal(total)
+        }
+      } catch (err) {
+        return
+      }
+    }
+
+    fetchProductApi()
+  }, [brandFilter, page, sort, location.search])
 
   const handleSortClick: ISectorSort['handleSortClick'] = sort => {
     setSort(sort)
@@ -53,13 +77,14 @@ const Main: React.FC<IBrandMain> = ({ brand, brandType }) => {
         <BrandBanner
           brand={brand}
           brandFilter={brandFilter}
+          total={total}
           setBrandFilter={setBrandFilter}
         />
         <div className='brand__main d-flex'>
           <div className='main__filter'>
             {sectorItemExtent && (
               <SectorItemExtent
-                start={sectorList.length ? sectorItemExtent.start + 1 : 0}
+                start={sectorItemExtent.start}
                 end={sectorItemExtent.end}
                 total={sectorItemExtent.total}
               />

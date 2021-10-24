@@ -1,8 +1,58 @@
+import { payApi } from 'api/payApi'
+import { useEffect, useState } from 'react'
 import { Input } from 'reactstrap'
-
+import { Pay } from '../interface'
 import './PayForm.scss'
 
 const PayForm: React.FC = () => {
+  const [info, setInfo] = useState<Pay>({
+    username: '',
+    phone: '',
+    deliveryAddress: {
+      city: '',
+      district: '',
+      ward: '',
+      address: '',
+    },
+  })
+
+  useEffect(() => {
+    const fetchPayApi = async () => {
+      try {
+        const { data } = await payApi.get()
+
+        setInfo(data)
+      } catch (err) {
+        return
+      }
+    }
+
+    fetchPayApi()
+  }, [])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target
+    if (
+      name === 'city' ||
+      name === 'district' ||
+      name === 'ward' ||
+      name === 'address'
+    ) {
+      setInfo({
+        ...info,
+        deliveryAddress: {
+          ...info.deliveryAddress,
+          [name]: value,
+        },
+      })
+    } else {
+      setInfo({
+        ...info,
+        [name]: value,
+      })
+    }
+  }
+
   return (
     <div className='pay-form'>
       <div className='pay-form__form-group pay-form__form-group--user'>
@@ -11,10 +61,21 @@ const PayForm: React.FC = () => {
         </div>
         <div className='form-group__form d-flex flex-wrap'>
           <div className='form__input size-16'>
-            <Input type='text' name='username' />
+            <Input
+              type='text'
+              name='username'
+              value={info.username}
+              onChange={handleChange}
+            />
           </div>
           <div className='form__input size-16'>
-            <Input type='text' name='phone' placeholder='Số điện thoại' />
+            <Input
+              type='text'
+              name='phone'
+              placeholder='Số điện thoại'
+              value={info.phone}
+              onChange={handleChange}
+            />
           </div>
         </div>
       </div>
@@ -24,19 +85,39 @@ const PayForm: React.FC = () => {
         </div>
         <div className='form-group__form d-flex flex-wrap'>
           <div className='form__input size-16'>
-            <Input type='text' name='city' placeholder='Tỉnh/Thành hố' />
+            <Input
+              type='text'
+              name='city'
+              placeholder='Tỉnh/Thành phố'
+              value={info.deliveryAddress?.city}
+              onChange={handleChange}
+            />
           </div>
           <div className='form__input size-16'>
-            <Input type='text' name='district' placeholder='Quận/Huyện' />
+            <Input
+              type='text'
+              name='district'
+              placeholder='Quận/Huyện'
+              value={info.deliveryAddress?.district}
+              onChange={handleChange}
+            />
           </div>
           <div className='form__input size-16'>
-            <Input type='text' name='ward' placeholder='Phường/Xã' />
+            <Input
+              type='text'
+              name='ward'
+              placeholder='Phường/Xã'
+              value={info.deliveryAddress?.ward}
+              onChange={handleChange}
+            />
           </div>
           <div className='form__input size-16'>
             <Input
               type='text'
               name='address'
               placeholder='Số nhà, tên đường, phường xã'
+              value={info.deliveryAddress?.address}
+              onChange={handleChange}
             />
           </div>
         </div>

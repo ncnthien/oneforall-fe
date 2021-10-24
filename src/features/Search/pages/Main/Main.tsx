@@ -1,9 +1,3 @@
-import { useLocation } from 'react-router-dom'
-import queryString from 'query-string'
-
-import './Main.scss'
-import { useEffect, useState } from 'react'
-import { ISectorItemExtent } from 'components/SectorItemExtent/interface'
 import {
   Filter,
   Pagination,
@@ -11,10 +5,14 @@ import {
   SectorList,
   SectorSort,
 } from 'components'
-import { IItem } from 'components/Item/interface'
-import { ISectorSort } from 'components/SectorSort/interface'
-import { getSectorListApi } from 'features/Sector/pages/Main/mockData'
 import { EPagination } from 'components/enum'
+import { IItem } from 'components/Item/interface'
+import { ISectorItemExtent } from 'components/SectorItemExtent/interface'
+import { ISectorSort } from 'components/SectorSort/interface'
+import queryString from 'query-string'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import './Main.scss'
 
 const Main: React.FC = () => {
   const [sectorList, setSectorList] = useState<IItem[]>([])
@@ -28,14 +26,13 @@ const Main: React.FC = () => {
 
   useEffect(() => {
     // Get sector list from api here
-    const { sectorList, sectorItemExtent } = getSectorListApi(
-      page,
-      EPagination.PER_PAGE,
-      sort
-    )
-
-    setSectorItemExtent(sectorItemExtent)
-    setSectorList(sectorList)
+    // const { sectorList, sectorItemExtent } = getSectorListApi(
+    //   page,
+    //   EPagination.PER_PAGE,
+    //   sort
+    // )
+    // setSectorItemExtent(sectorItemExtent)
+    // setSectorList(sectorList)
   }, [page, sort, query])
 
   const handleSortClick: ISectorSort['handleSortClick'] = sort => {
@@ -57,7 +54,7 @@ const Main: React.FC = () => {
           <div className='main__filter'>
             {sectorItemExtent && (
               <SectorItemExtent
-                start={sectorList.length ? sectorItemExtent.start + 1 : 0}
+                start={sectorItemExtent.start}
                 end={sectorItemExtent.end}
                 total={sectorItemExtent.total}
               />

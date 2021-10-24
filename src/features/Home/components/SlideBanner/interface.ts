@@ -1,7 +1,9 @@
 export type Event = {
-  banner: string
+  _id: string
   title: string
+  banner: string
   url: string
+  isActive: boolean
 }
 
 export interface ISlideBanner {

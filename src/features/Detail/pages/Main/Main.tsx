@@ -39,7 +39,7 @@ const Main: React.FC<IDetail> = ({ params }) => {
   const handleAddBtnClick = () => {
     if (product) {
       const item = {
-        id: product.id,
+        id: product._id,
         url: product.url,
         img: product.images[0],
         name: product.name,
