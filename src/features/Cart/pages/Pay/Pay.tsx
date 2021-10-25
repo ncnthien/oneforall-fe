@@ -1,8 +1,9 @@
-import { useAppSelector } from 'app/hooks'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { Breadcrumb } from 'components'
+import { setShow } from 'components/Header/AuthModal/AuthModal.slice'
 import { getCost, getQuantity } from 'features/Cart/Cart.helper'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import OnlinePayModal from './OnlinePayModal/OnlinePayModal'
 import './Pay.scss'
 import PayForm from './PayForm/PayForm'
@@ -11,10 +12,17 @@ import SubmittedModal from './SubmittedModal/SubmittedModal'
 const Pay: React.FC = () => {
   const [showSubmittedModal, setShowSubmittedModal] = useState<boolean>(false)
   const [showOnlinePayModal, setShowOnlinePayModal] = useState<boolean>(false)
-
+  const { profile } = useAppSelector(state => state.profile)
   const { cart } = useAppSelector(state => state.cart)
+  const dispatch = useAppDispatch()
+  const history = useHistory()
   const cost = getCost(cart)
   const quantity = getQuantity(cart)
+
+  if (!profile) {
+    history.push('/cart')
+    dispatch(setShow(true))
+  }
 
   const renderPayList = (): JSX.Element[] => {
     return cart.map(item => (

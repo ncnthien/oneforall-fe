@@ -2,10 +2,7 @@
 import authApi from 'apis/authApi'
 import { useAppDispatch } from 'app/hooks'
 import { FacebookBtnIcon, GoogleBtnIcon } from 'assets/images/svgs'
-import {
-  LoginBody,
-  LoginFormProps,
-} from 'components/Header/AuthModal/interface'
+import { LoginBody } from 'components/Header/AuthModal/interface'
 import { getProfile } from 'features/Profile/Profile.slice'
 import {
   ErrorMessage,
@@ -24,6 +21,7 @@ import GoogleLogin, {
 } from 'react-google-login'
 import { FormGroup } from 'reactstrap'
 import * as Yup from 'yup'
+import { setShow } from '../AuthModal.slice'
 import './LoginForm.scss'
 
 const LoginSchema = Yup.object().shape({
@@ -34,7 +32,7 @@ const LoginSchema = Yup.object().shape({
     .required('Password is required'),
 })
 
-const LoginForm: React.FC<LoginFormProps> = ({ setShow }) => {
+const LoginForm: React.FC = () => {
   const jwtTokenKey = 'jwtToken'
   const [error, setError] = useState<string>('')
   const defaultLoginForm: LoginBody = { email: '', password: '' }
@@ -58,7 +56,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ setShow }) => {
 
       localStorage.setItem(jwtTokenKey, token)
       dispatch(getProfile())
-      setShow(false)
+      dispatch(setShow(false))
     } catch (error) {
       // Handle UI if error occurs here
       console.log(error)
@@ -80,7 +78,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ setShow }) => {
 
       localStorage.setItem(jwtTokenKey, token)
       dispatch(getProfile())
-      setShow(false)
+      dispatch(setShow(false))
     } catch (error) {
       // Handle UI if error occurs here
       console.log(error)
@@ -101,7 +99,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ setShow }) => {
       localStorage.setItem(jwtTokenKey, token)
       dispatch(getProfile())
       actions.setSubmitting(false)
-      setShow(false)
+      dispatch(setShow(false))
     } catch (error) {
       setError(error as string)
       actions.setSubmitting(false)
