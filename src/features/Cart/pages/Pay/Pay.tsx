@@ -1,7 +1,9 @@
+import { payApi } from 'api/payApi'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { Breadcrumb } from 'components'
 import { setShow } from 'components/Header/AuthModal/AuthModal.slice'
 import { getCost, getQuantity } from 'features/Cart/Cart.helper'
+import { handlePay } from 'features/Cart/Cart.slice'
 import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -27,10 +29,11 @@ const Pay: React.FC = () => {
     },
   })
   const [err, setErr] = useState<string>('')
+  const [cost, setCost] = useState<number>(0)
   const { cart } = useAppSelector(state => state.cart)
   const dispatch = useAppDispatch()
   const history = useHistory()
-  const cost = getCost(cart)
+  const cartCost = getCost(cart)
   const quantity = getQuantity(cart)
 
   if (!profile) {
@@ -83,20 +86,32 @@ const Pay: React.FC = () => {
   const handleSubmitPayForm = () => {
     PaySchema.validate(info)
       .then(() => {
-        const mappedCartList = cart.map(item => {
-          return {
-            productRef: item.id,
-            quantity,
-            cost: item.isSale ? item.reducedPrice : item.price,
+        const payApiPostSubmit = async () => {
+          const mappedCartList = cart.map(item => {
+            return {
+              productRef: item.id,
+              quantity,
+              cost: item.isSale ? item.reducedPrice : item.price,
+            }
+          })
+          const data = {
+            phone: info.phone,
+            deliveryAddress: info.deliveryAddress,
+            cart: mappedCartList,
           }
-        })
-        const data = {
-          phone: info.phone,
-          deliveryAddress: info.deliveryAddress,
-          cart: mappedCartList,
+          try {
+            await payApi.pay(data)
+
+            setErr('')
+            setCost(cartCost)
+            setShowSubmittedModal(true)
+            dispatch(handlePay())
+          } catch (err) {
+            return
+          }
         }
-        setErr('')
-        setShowSubmittedModal(true)
+
+        payApiPostSubmit()
       })
       .catch((err: ValidationError) => {
         setErr(err.message)
@@ -131,12 +146,12 @@ const Pay: React.FC = () => {
           <div className='calculation__pay-list size-14'>{renderPayList()}</div>
           <div className='calculation__temporary d-flex justify-content-between align-items-center px-3 py-3'>
             <span className='size-14 font-bold'>Tạm tính:</span>
-            <span className='size-16'>{cost.toLocaleString()} ₫</span>
+            <span className='size-16'>{cartCost.toLocaleString()} ₫</span>
           </div>
           <div className='calculation__genuine d-flex justify-content-between align-items-center px-3 py-3'>
             <span className='size-14 font-bold'>Thành tiền:</span>
             <span className='size-18 font-bold color-red'>
-              {cost.toLocaleString()} ₫
+              {cartCost.toLocaleString()} ₫
             </span>
           </div>
         </div>
