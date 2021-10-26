@@ -1,11 +1,15 @@
 import { useAppDispatch } from 'app/hooks'
 import { checkedImg } from 'assets/images'
-import { toggleFilter, toggleItem } from 'components/Filter/Filter.slice'
+import { toggleItem } from 'components/Filter/Filter.slice'
 import { useEffect, useState } from 'react'
 import './FilterItem.scss'
 import { IFilterItem } from './interface'
 
-const FilterItem: React.FC<IFilterItem> = ({ itemName, itemChecked }) => {
+const FilterItem: React.FC<IFilterItem> = ({
+  dropdownName,
+  itemName,
+  itemChecked,
+}) => {
   const dispatch = useAppDispatch()
   const [checked, setChecked] = useState<boolean>(false)
 
@@ -14,8 +18,7 @@ const FilterItem: React.FC<IFilterItem> = ({ itemName, itemChecked }) => {
   }, [itemChecked])
 
   const handleItemClick = () => {
-    dispatch(toggleItem(itemName))
-    dispatch(toggleFilter(itemName))
+    dispatch(toggleItem({ dropdownName, itemName }))
   }
 
   return (

@@ -1,4 +1,5 @@
 import { productApi } from 'api/productApi'
+import { useAppSelector } from 'app/hooks'
 import {
   Breadcrumb,
   Filter,
@@ -11,10 +12,9 @@ import { EPagination } from 'components/enum'
 import { IItem } from 'components/Item/interface'
 import { ISectorItemExtent } from 'components/SectorItemExtent/interface'
 import { ISectorSort } from 'components/SectorSort/interface'
-import queryString from 'query-string'
+import queryString from 'qs'
 import { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
-import { useLocation } from 'react-router-dom'
 import { ISector } from './interface'
 import './Main.scss'
 
@@ -23,9 +23,9 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
   const [page, setPage] = useState<number>(1)
   const [sectorItemExtent, setSectorItemExtent] = useState<ISectorItemExtent>()
   const [sort, setSort] = useState<ISectorSort['sort']>()
+  const { approvedFilter } = useAppSelector(state => state.filter)
 
   const match = useRouteMatch()
-  const location = useLocation()
 
   useEffect(() => {
     const fetchProductApi = async () => {
@@ -35,18 +35,21 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
         } = await productApi.get({
           type: sectorType,
           sort,
-          ...queryString.parse(location.search),
+          ...approvedFilter,
           limit: EPagination.PER_PAGE,
         })
         setSectorList(productList)
         setSectorItemExtent(productDisplay)
-      } catch (err) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (err: any) {
+        console.log(queryString.stringify(approvedFilter))
+        console.log(err.response)
         return
       }
     }
 
     fetchProductApi()
-  }, [page, sort, location.search])
+  }, [page, sort, approvedFilter])
 
   const getInfoSector = (
     sectorType: ISector['sectorType']

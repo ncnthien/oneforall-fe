@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
-import queryString from 'query-string'
+import queryString from 'qs'
 import { useHistory } from 'react-router-dom'
 
 const axiosClient = axios.create({

@@ -22,12 +22,23 @@ const Filter: React.FC<IFilter> = ({ filterType }) => {
       <Dropdown key={dropdown.id} dropdown={dropdown} />
     ))
 
-  const renderApprovedFilter = (): JSX.Element[] =>
-    approvedFilter.map((item, index) => (
+  const renderApprovedFilter = (): JSX.Element[] => {
+    const approvedItems = currentFilter.map(dropdown => {
+      for (const item of dropdown.items) {
+        if (item.checked) {
+          return item.name
+        }
+      }
+    })
+
+    const approvedItemStrings = approvedItems.filter(item => item)
+
+    return approvedItemStrings.map((item, index) => (
       <div key={index} className='approved__item py-1 px-2 me-1 mt-1 size-12'>
         {item}
       </div>
     ))
+  }
 
   const handleSaleonlyBtnClick = (): void => {
     setShowSaleOnly(!showSaleOnly)
@@ -56,7 +67,7 @@ const Filter: React.FC<IFilter> = ({ filterType }) => {
           <div
             className={
               'approved__list d-flex flex-wrap' +
-              (approvedFilter.length > 0 ? ' pb-2' : '')
+              (Object.keys(approvedFilter).length > 0 ? ' pb-2' : '')
             }
           >
             {renderApprovedFilter()}

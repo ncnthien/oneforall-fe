@@ -1,13 +1,12 @@
-import { laptopFilter, pcFilter, accessoryFilter } from './Filter.data'
-
-export type Items = {
+export interface Item {
   name: string
+  value: string | { min: number; max?: number }
   checked: boolean
-}[]
-export type Dropdown = {
+}
+export interface Dropdown {
   id: string
   name: string
-  items: Items
+  items: Item[]
 }
 
 export interface IFilter {
@@ -18,7 +17,17 @@ export interface IFilterState {
   showSaleOnly: boolean
 }
 
-export interface filterState {
-  currentFilter: typeof laptopFilter | typeof pcFilter | typeof accessoryFilter
-  approvedFilter: string[]
+export interface ApprovedFilter {
+  [key: string]:
+    | string
+    | {
+        min: number
+        max?: number
+      }
+    | number
+}
+
+export interface FilterState {
+  currentFilter: Dropdown[]
+  approvedFilter: ApprovedFilter
 }
