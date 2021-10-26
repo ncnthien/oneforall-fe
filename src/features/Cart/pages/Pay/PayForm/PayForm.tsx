@@ -1,35 +1,8 @@
-import { payApi } from 'api/payApi'
-import { useEffect, useState } from 'react'
 import { Input } from 'reactstrap'
-import { Pay } from '../interface'
+import { IPayForm } from './interface'
 import './PayForm.scss'
 
-const PayForm: React.FC = () => {
-  const [info, setInfo] = useState<Pay>({
-    username: '',
-    phone: '',
-    deliveryAddress: {
-      city: '',
-      district: '',
-      ward: '',
-      address: '',
-    },
-  })
-
-  useEffect(() => {
-    const fetchPayApi = async () => {
-      try {
-        const { data } = await payApi.get()
-
-        setInfo(data)
-      } catch (err) {
-        return
-      }
-    }
-
-    fetchPayApi()
-  }, [])
-
+const PayForm: React.FC<IPayForm> = ({ info, setInfo, err }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
     if (
@@ -122,6 +95,7 @@ const PayForm: React.FC = () => {
           </div>
         </div>
       </div>
+      <div className='text-danger pay__err'>{err}</div>
     </div>
   )
 }

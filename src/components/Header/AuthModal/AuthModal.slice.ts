@@ -12,7 +12,6 @@ export const authModalSlice = createSlice({
   initialState,
   reducers: {
     setShow(state, action: PayloadAction<boolean>) {
-      console.log(action.payload)
       state.showAuthModal = action.payload
     },
     setActive(state, action: PayloadAction<EAuthModalTab>) {
