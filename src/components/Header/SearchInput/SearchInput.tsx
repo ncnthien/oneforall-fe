@@ -2,7 +2,7 @@ import { SearchIcon } from 'assets/images/svgs'
 import { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { Input } from 'reactstrap'
-import queryString from 'query-string'
+import queryString from 'qs'
 import './SearchInput.scss'
 
 const SearchInput: React.FC = () => {

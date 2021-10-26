@@ -13,7 +13,12 @@ const Dropdown: React.FC<IDropdown> = ({ dropdown: { name, items } }) => {
 
   const renderList = (): JSX.Element[] => {
     return items.map((item, index) => (
-      <FilterItem key={index} itemName={item.name} itemChecked={item.checked} />
+      <FilterItem
+        key={index}
+        itemName={item.name}
+        itemChecked={item.checked}
+        dropdownName={name}
+      />
     ))
   }
 
