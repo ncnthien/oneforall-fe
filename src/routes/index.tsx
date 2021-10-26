@@ -1,4 +1,4 @@
-import { AxiosSetupInterceptors } from 'apis/axiosClient'
+import { AxiosSetupInterceptors } from 'api/axiosClient'
 import {
   Brand,
   Cart,

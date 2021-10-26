@@ -1,4 +1,4 @@
-import axiosClient from 'apis/axiosClient'
+import axiosClient from 'api/axiosClient'
 import { AxiosResponse } from 'axios'
 import { FetchedProfile, ChangePasswordBody } from 'features/Profile/interface'
 

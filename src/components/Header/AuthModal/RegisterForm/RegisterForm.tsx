@@ -1,4 +1,4 @@
-import authApi from 'apis/authApi'
+import authApi from 'api/authApi'
 import { useAppDispatch } from 'app/hooks'
 import {
   RegisterBody,
