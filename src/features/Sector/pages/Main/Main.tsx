@@ -12,7 +12,6 @@ import { EPagination } from 'components/enum'
 import { IItem } from 'components/Item/interface'
 import { ISectorItemExtent } from 'components/SectorItemExtent/interface'
 import { ISectorSort } from 'components/SectorSort/interface'
-import queryString from 'qs'
 import { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router'
 import { ISector } from './interface'
@@ -42,8 +41,6 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
         setSectorItemExtent(productDisplay)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
-        console.log(queryString.stringify(approvedFilter))
-        console.log(err.response)
         return
       }
     }
