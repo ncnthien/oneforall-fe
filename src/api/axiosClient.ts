@@ -1,6 +1,6 @@
-// api/axiosClient.js
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import queryString from 'query-string'
+import { useHistory } from 'react-router-dom'
 
 const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -12,33 +12,38 @@ const axiosClient = axios.create({
 
 const jwtTokenKey = 'jwtToken'
 
-axiosClient.interceptors.request.use(async (config: AxiosRequestConfig) => {
-  const token = localStorage.getItem(jwtTokenKey) || ''
+export const AxiosSetupInterceptors: React.FC = () => {
+  const history = useHistory()
 
-  if (config.headers) {
-    config.headers['authorization'] = token
-  }
+  axiosClient.interceptors.request.use(async (config: AxiosRequestConfig) => {
+    const token = localStorage.getItem(jwtTokenKey) || ''
 
-  return config
-})
-axiosClient.interceptors.response.use(
-  (response: AxiosResponse) => {
-    return response
-  },
-  (error: AxiosError) => {
-    if (error.response) {
-      const { status } = error.response
+    if (config.headers) {
+      config.headers['authorization'] = token
+    }
 
-      if (status === 400) {
-        throw error.response.data
-      }
+    return config
+  })
 
-      if (status === 401 || status === 403) {
-        localStorage.removeItem(jwtTokenKey)
+  axiosClient.interceptors.response.use(
+    (response: AxiosResponse) => {
+      return response
+    },
+    (error: AxiosError) => {
+      if (error.response) {
+        const { status } = error.response
 
-        throw error.response.data
+        if (status === 401 || status === 403) {
+          localStorage.removeItem(jwtTokenKey)
+          history.push('/')
+        }
+
+        throw error
       }
     }
-  }
-)
+  )
+
+  return null
+}
+
 export default axiosClient

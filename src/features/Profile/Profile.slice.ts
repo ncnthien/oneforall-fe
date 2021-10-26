@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import profileApi from 'apis/profileApi'
+import profileApi from 'api/profileApi'
 import { FetchedProfile, ProfileState } from 'features/Profile/interface'
 
 export const getProfile = createAsyncThunk('profile/get', async () => {

@@ -23,7 +23,7 @@ import {
   FormikValues,
 } from 'formik'
 import * as Yup from 'yup'
-import profileApi from 'apis/profileApi'
+import profileApi from 'api/profileApi'
 
 export const manageNavList: INavList[] = [
   { title: 'Tài khoản', url: '/profile', icon: UserIcon, active: true },

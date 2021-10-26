@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import authApi from 'apis/authApi'
+import authApi from 'api/authApi'
 import { useAppDispatch } from 'app/hooks'
 import { FacebookBtnIcon, GoogleBtnIcon } from 'assets/images/svgs'
 import { LoginBody } from 'components/Header/AuthModal/interface'
