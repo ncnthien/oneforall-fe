@@ -5,12 +5,9 @@ import { getCost, getQuantity } from 'features/Cart/Cart.helper'
 import { clearProfile } from 'features/Profile/Profile.slice'
 import { Link, useHistory } from 'react-router-dom'
 import './HeaderAction.scss'
-import { IHeaderAction } from './interface'
+import { setShow, setActive } from '../AuthModal/AuthModal.slice'
 
-const HeaderAction: React.FC<IHeaderAction> = ({
-  setShowAuthModal,
-  setActiveAuthModalTab,
-}) => {
+const HeaderAction: React.FC = () => {
   const { cart } = useAppSelector(state => state.cart)
   const { profile } = useAppSelector(state => state.profile)
   const quantity = getQuantity(cart)
@@ -137,8 +134,8 @@ const HeaderAction: React.FC<IHeaderAction> = ({
                 <div
                   className='authentication__btn'
                   onClick={() => {
-                    setShowAuthModal(true)
-                    setActiveAuthModalTab(EAuthModalTab.LOGIN)
+                    dispatch(setShow(true))
+                    dispatch(setActive(EAuthModalTab.LOGIN))
                   }}
                 >
                   Đăng nhập
@@ -146,8 +143,8 @@ const HeaderAction: React.FC<IHeaderAction> = ({
                 <div
                   className='authentication__btn'
                   onClick={() => {
-                    setShowAuthModal(true)
-                    setActiveAuthModalTab(EAuthModalTab.REGISTER)
+                    dispatch(setShow(true))
+                    dispatch(setActive(EAuthModalTab.REGISTER))
                   }}
                 >
                   Tạo tài khoản

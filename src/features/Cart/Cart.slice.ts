@@ -88,9 +88,18 @@ const cartSlice = createSlice({
       removeCartItem(state, action.payload)
       saveCartToStorage(state)
     },
+    handlePay: state => {
+      state.cart = []
+      saveCartToStorage(state)
+    },
   },
 })
 
-export const { add, increaseQuantity, decreaseQuantity, removeItem } =
-  cartSlice.actions
+export const {
+  add,
+  increaseQuantity,
+  decreaseQuantity,
+  removeItem,
+  handlePay,
+} = cartSlice.actions
 export default cartSlice.reducer

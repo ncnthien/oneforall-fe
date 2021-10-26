@@ -13,10 +13,6 @@ export interface IProps {
 }
 
 const Header: React.FC<IProps> = ({ setShowOverlay }) => {
-  const [showAuthModal, setShowAuthModal] = useState<boolean>(false)
-  const [activeAuthModalTab, setActiveAuthModalTab] = useState<EAuthModalTab>(
-    EAuthModalTab.LOGIN
-  )
   const [isScrollingDown, setIsScrollingDown] = useState<boolean | 0>(false)
 
   let lastScrollTop = 0
@@ -57,12 +53,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
           : ''
       }`}
     >
-      <AuthModal
-        show={showAuthModal}
-        setShow={setShowAuthModal}
-        activeTab={activeAuthModalTab}
-        setActiveTab={setActiveAuthModalTab}
-      />
+      <AuthModal />
       <div className='container'>
         <div className='position-relative d-flex align-items-center'>
           <Link to='/' className='header-logo position-relative'>
@@ -70,10 +61,7 @@ const Header: React.FC<IProps> = ({ setShowOverlay }) => {
           </Link>
           <HeaderNav setShowOverlay={setShowOverlay} />
           <SearchInput />
-          <HeaderAction
-            setActiveAuthModalTab={setActiveAuthModalTab}
-            setShowAuthModal={setShowAuthModal}
-          />
+          <HeaderAction />
         </div>
       </div>
     </div>
