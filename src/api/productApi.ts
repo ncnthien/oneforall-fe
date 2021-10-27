@@ -9,6 +9,7 @@ export interface ProductParams {
   type: 'laptop' | 'pc' | 'accessory'
   sort?: 'ascend' | 'descend'
   brand?: string
+  isSale?: boolean
   subBrand?: string
   price?: {
     min?: number

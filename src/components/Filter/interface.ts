@@ -13,10 +13,6 @@ export interface IFilter {
   filterType: 'laptop' | 'pc' | 'accessory'
 }
 
-export interface IFilterState {
-  showSaleOnly: boolean
-}
-
 export interface ApprovedFilter {
   [key: string]:
     | string
@@ -30,4 +26,5 @@ export interface ApprovedFilter {
 export interface FilterState {
   currentFilter: Dropdown[]
   approvedFilter: ApprovedFilter
+  isSale: boolean
 }

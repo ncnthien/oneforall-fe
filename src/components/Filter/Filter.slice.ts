@@ -5,6 +5,7 @@ import { Dropdown, FilterState, ApprovedFilter } from './interface'
 const initialState: FilterState = {
   currentFilter: laptopFilter,
   approvedFilter: {},
+  isSale: false,
 }
 
 const toggleCheckedItem = (
@@ -75,12 +76,16 @@ export const filterSlice = createSlice({
       state.approvedFilter = {}
       updateApprovedFilter(state.currentFilter, state.approvedFilter)
     },
+    toggleIsSale: state => {
+      state.isSale = !state.isSale
+    },
     clearFilter: state => {
       state.approvedFilter = {}
     },
   },
 })
 
-export const { loadFilter, toggleItem, clearFilter } = filterSlice.actions
+export const { loadFilter, toggleItem, clearFilter, toggleIsSale } =
+  filterSlice.actions
 
 export default filterSlice.reducer
