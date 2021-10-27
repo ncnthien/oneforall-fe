@@ -7,6 +7,7 @@ const Section: React.FC<ISection> = ({
   title,
   linkButton,
   classFooter,
+  handleClick,
 }) => {
   return (
     <div className='section'>
@@ -19,6 +20,7 @@ const Section: React.FC<ISection> = ({
       >
         <Link
           to={linkButton}
+          onClick={handleClick}
           className='section__btn text-decoration-none d-inline-block color-grey font-bold size-14'
         >
           Xem tất cả

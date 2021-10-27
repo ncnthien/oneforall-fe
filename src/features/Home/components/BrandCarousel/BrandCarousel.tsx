@@ -9,8 +9,12 @@ const BrandCarousel: React.FC<IBrandCarousel> = ({ brandList, isSlide }) => {
 
   const renderBrandList = (): JSX.Element[] => {
     return brandList.map(brand => (
-      <Link key={brand.name} to={brand.url} className='carousel__item me-2'>
-        <img src={brand.path} alt={brand.name} className='w-100' />
+      <Link
+        key={brand._id}
+        to={`/${brand.value}`}
+        className='carousel__item me-2'
+      >
+        <img src={brand.logo} alt={brand.value} className='w-100' />
       </Link>
     ))
   }
@@ -42,7 +46,7 @@ const BrandCarousel: React.FC<IBrandCarousel> = ({ brandList, isSlide }) => {
           <div className='carousel__main flex-grow-1 overflow-hidden position-relative'>
             <div className='carousel__brick invisible'>
               <img
-                src={brandList.length > 0 ? brandList[0].path : ''}
+                src={brandList.length > 0 ? brandList[0].logo : ''}
                 alt=''
                 className='w-100'
               />
