@@ -1,6 +1,9 @@
+import { orderApi } from 'api/orderApi'
 import { HistoryIcon, UserIcon } from 'assets/images/svgs'
 import { Breadcrumb, ManageNav } from 'components'
 import { INavList } from 'features/Profile/pages/Main/interface'
+import { useEffect, useState } from 'react'
+import { IHistory } from './interface'
 import './Main.scss'
 
 export const manageNavList: INavList[] = [
@@ -14,6 +17,30 @@ export const manageNavList: INavList[] = [
 ]
 
 const Main: React.FC = () => {
+  const [orderList, setOrderList] = useState<IHistory['orderList']>([])
+  const [total, setTotal] = useState<IHistory['total']>(0)
+
+  useEffect(() => {
+    const fetchOrderApi = async () => {
+      try {
+        const {
+          data: { orderList, total },
+        } = await orderApi.get()
+        setOrderList(orderList)
+        setTotal(total)
+      } catch (err) {
+        return
+      }
+    }
+
+    fetchOrderApi()
+  }, [])
+
+  const getDate = (dateString: string) => {
+    const date = new Date(dateString)
+
+    return date.toLocaleDateString()
+  }
   return (
     <div className='history'>
       <div className='container'>
@@ -31,7 +58,10 @@ const Main: React.FC = () => {
               <div className='font-bold size-32'>Lịch sử mua hàng</div>
               <div className='size-16'>
                 Tổng số tiền đã giao dịch:{' '}
-                <span className='font-bold'>Chưa có giá / 0</span> đơn hàng
+                <span className='font-bold'>{`${
+                  total ? total.toLocaleString() : 'Chưa có giá'
+                } / ${orderList.length}`}</span>{' '}
+                đơn hàng
               </div>
             </div>
             <div className='history-wrapper__table'>
@@ -44,20 +74,28 @@ const Main: React.FC = () => {
                     <td>Tổng tiền</td>
                     <td>Trạng thái</td>
                   </tr>
-                  <tr>
-                    <td>123456789</td>
-                    <td>14/09/2021</td>
-                    <td>Macbook Pro M1</td>
-                    <td>41,000,000 VND</td>
-                    <td>Chờ giao hàng</td>
-                  </tr>
-                  <tr>
-                    <td>123456789</td>
-                    <td>14/09/2021</td>
-                    <td>Macbook Pro M1</td>
-                    <td>41,000,000 VND</td>
-                    <td>Chờ giao hàng</td>
-                  </tr>
+                  {orderList.map(order => {
+                    return (
+                      <tr key={order._id}>
+                        <td>{order.code}</td>
+                        <td>{getDate(order.date)}</td>
+                        <td>
+                          {order.products.map(item => (
+                            <div key={item._id}>{item.productRef.name}</div>
+                          ))}
+                        </td>
+                        <td>
+                          {order.products
+                            .reduce((cost, product) => {
+                              return cost + product.cost
+                            }, 0)
+                            .toLocaleString()}{' '}
+                          VND
+                        </td>
+                        <td>{order.status}</td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             </div>
