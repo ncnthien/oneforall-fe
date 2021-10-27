@@ -1,15 +1,13 @@
 import { useAppDispatch, useAppSelector } from 'app/hooks'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Dropdown from './Dropdown/Dropdown'
 import './Filter.scss'
-import { clearFilter, loadFilter } from './Filter.slice'
-import { IFilter, IFilterState } from './interface'
+import { clearFilter, loadFilter, toggleIsSale } from './Filter.slice'
+import { IFilter } from './interface'
 
 const Filter: React.FC<IFilter> = ({ filterType }) => {
-  const [showSaleOnly, setShowSaleOnly] =
-    useState<IFilterState['showSaleOnly']>(false)
   const dispatch = useAppDispatch()
-  const { currentFilter, approvedFilter } = useAppSelector(
+  const { currentFilter, approvedFilter, isSale } = useAppSelector(
     state => state.filter
   )
 
@@ -41,7 +39,7 @@ const Filter: React.FC<IFilter> = ({ filterType }) => {
   }
 
   const handleSaleonlyBtnClick = (): void => {
-    setShowSaleOnly(!showSaleOnly)
+    dispatch(toggleIsSale())
   }
 
   const handleRemoveApprovedFilterClick = () => {
@@ -80,7 +78,7 @@ const Filter: React.FC<IFilter> = ({ filterType }) => {
           <button
             className={
               'saleonly__btn position-relative' +
-              (showSaleOnly ? ' saleonly__btn--active' : '')
+              (isSale ? ' saleonly__btn--active' : '')
             }
             onClick={handleSaleonlyBtnClick}
           ></button>

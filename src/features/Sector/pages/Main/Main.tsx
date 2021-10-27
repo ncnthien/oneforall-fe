@@ -22,7 +22,7 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
   const [page, setPage] = useState<number>(1)
   const [sectorItemExtent, setSectorItemExtent] = useState<ISectorItemExtent>()
   const [sort, setSort] = useState<ISectorSort['sort']>()
-  const { approvedFilter } = useAppSelector(state => state.filter)
+  const { approvedFilter, isSale } = useAppSelector(state => state.filter)
 
   const match = useRouteMatch()
 
@@ -35,6 +35,7 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
           type: sectorType,
           sort,
           ...approvedFilter,
+          isSale,
           limit: EPagination.PER_PAGE,
         })
         setSectorList(productList)
@@ -46,7 +47,7 @@ const Main: React.FC<ISector> = ({ sectorType }) => {
     }
 
     fetchProductApi()
-  }, [page, sort, approvedFilter])
+  }, [page, sort, approvedFilter, isSale])
 
   const getInfoSector = (
     sectorType: ISector['sectorType']
