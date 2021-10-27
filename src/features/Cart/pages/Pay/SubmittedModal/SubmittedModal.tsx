@@ -4,7 +4,12 @@ import { Modal } from 'reactstrap'
 import { ISubmittedModal } from './interface'
 import './SubmittedModal.scss'
 
-const SubmittedModal: React.FC<ISubmittedModal> = ({ show, setShow, cost }) => {
+const SubmittedModal: React.FC<ISubmittedModal> = ({
+  show,
+  setShow,
+  cost,
+  info,
+}) => {
   const toggleShowAuthModal = (): void => setShow(!show)
 
   return (
@@ -26,8 +31,9 @@ const SubmittedModal: React.FC<ISubmittedModal> = ({ show, setShow, cost }) => {
               </div>
             </div>
             <div>
-              Cảm ơn khách hàng <span className='font-bold'>Nguyễn Hiếu</span>{' '}
-              đã đặt hàng tại Oneforall.
+              Cảm ơn khách hàng{' '}
+              <span className='font-bold'>{info.username}</span> đã đặt hàng tại
+              Oneforall.
             </div>
             <div>
               Trong vòng 24h nhân viên Oneforall sẽ gọi điện xác nhận đặt hàng
@@ -37,12 +43,12 @@ const SubmittedModal: React.FC<ISubmittedModal> = ({ show, setShow, cost }) => {
           <div className='main__content'>
             <div className='font-bold size-18'>Thông tin đặt hàng</div>
             <div className='size-14'>
-              Người nhận: <span className='font-bold'>Nguyễn Hiếu</span>
+              Người nhận: <span className='font-bold'>{info.username}</span>
             </div>
             <div className='size-14'>
               Nhận hàng tại:{' '}
               <span className='font-bold'>
-                67 Mai am, Thuận Phước, Hải Châu, Đà Nẵng
+                {`${info.deliveryAddress?.address}, ${info.deliveryAddress?.ward}, ${info.deliveryAddress?.district}, ${info.deliveryAddress?.city} `}
               </span>
             </div>
             <div className='size-14'>

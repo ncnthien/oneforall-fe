@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
                     <Link to='/brand/hp'>Laptop HP</Link>
                   </div>
                   <div className='footer-content__nav size-14'>
-                    <Link to='/brand/thinkpad'>Laptop ThinkPad</Link>
+                    <Link to='/brand/asus'>Laptop Asus</Link>
                   </div>
                   <div className='footer-content__nav size-14'>
                     <Link to='/brand/lenovo'>Laptop Lenovo</Link>
@@ -61,13 +61,13 @@ const Footer: React.FC = () => {
                 </div>
                 <div className='w-50'>
                   <div className='footer-content__nav size-14'>
-                    <Link to='/#'>Alienware</Link>
+                    <Link to='/brand/Acer'>Acer</Link>
                   </div>
                   <div className='footer-content__nav size-14'>
-                    <Link to='/apple'>Macbook</Link>
+                    <Link to='/brand/apple'>Macbook</Link>
                   </div>
                   <div className='footer-content__nav size-14'>
-                    <Link to='/razer'>Laptop Razer</Link>
+                    <Link to='/brand/razer'>Laptop Razer</Link>
                   </div>
                   <div className='footer-content__nav size-14'>
                     <Link to='/accessory'>Phụ kiện</Link>

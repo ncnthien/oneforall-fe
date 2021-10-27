@@ -2,12 +2,14 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import filterReducer from 'components/Filter/Filter.slice'
 import cartReducer from 'features/Cart/Cart.slice'
 import profileReducer from 'features/Profile/Profile.slice'
+import authModalReducer from 'components/Header/AuthModal/AuthModal.slice'
 
 export const store = configureStore({
   reducer: {
     filter: filterReducer,
     cart: cartReducer,
     profile: profileReducer,
+    authModal: authModalReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

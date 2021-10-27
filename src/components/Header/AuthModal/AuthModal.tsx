@@ -1,26 +1,29 @@
+import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { EAuthModalTab } from 'components/enum'
 import { Modal, TabContent, TabPane } from 'reactstrap'
 import './AuthModal.scss'
-import { IAuthModal } from './interface'
 import LoginForm from './LoginForm/LoginForm'
 import RegisterForm from './RegisterForm/RegisterForm'
+import { setShow, setActive } from './AuthModal.slice'
 
-const AuthModal: React.FC<IAuthModal> = ({
-  show,
-  setShow,
-  activeTab,
-  setActiveTab,
-}) => {
-  const toggleShowAuthModal = (): void => setShow(!show)
+const AuthModal: React.FC = () => {
+  const { showAuthModal, activeAuthModalTab } = useAppSelector(
+    state => state.authModal
+  )
+  const dispatch = useAppDispatch()
+
+  const toggleShowAuthModal = (): void => {
+    dispatch(setShow(!showAuthModal))
+  }
 
   const toggleShowAuthModalTab = (tab: EAuthModalTab): void => {
-    if (activeTab !== tab) setActiveTab(tab)
+    if (activeAuthModalTab !== tab) dispatch(setActive(tab))
   }
 
   return (
     <div className='auth-modal'>
       <Modal
-        isOpen={show}
+        isOpen={showAuthModal}
         toggle={toggleShowAuthModal}
         centered
         className='auth-modal__modal'
@@ -28,7 +31,7 @@ const AuthModal: React.FC<IAuthModal> = ({
         <div className='auth-modal__header d-flex'>
           <div
             className={`auth-modal-tab__nav position-relative d-flex justify-content-center align-items-center font-bold size-20 ${
-              activeTab === EAuthModalTab.LOGIN ? 'active' : ''
+              activeAuthModalTab === EAuthModalTab.LOGIN ? 'active' : ''
             }`}
             onClick={() => toggleShowAuthModalTab(EAuthModalTab.LOGIN)}
           >
@@ -36,7 +39,7 @@ const AuthModal: React.FC<IAuthModal> = ({
           </div>
           <div
             className={`auth-modal-tab__nav position-relative d-flex justify-content-center align-items-center font-bold size-20 ${
-              activeTab === EAuthModalTab.REGISTER ? 'active' : ''
+              activeAuthModalTab === EAuthModalTab.REGISTER ? 'active' : ''
             }`}
             onClick={() => toggleShowAuthModalTab(EAuthModalTab.REGISTER)}
           >
@@ -44,12 +47,12 @@ const AuthModal: React.FC<IAuthModal> = ({
           </div>
         </div>
         <div className='auth-modal-tab'>
-          <TabContent activeTab={activeTab}>
+          <TabContent activeTab={activeAuthModalTab}>
             <TabPane tabId={EAuthModalTab.LOGIN}>
-              <LoginForm setShow={setShow} />
+              <LoginForm />
             </TabPane>
             <TabPane tabId={EAuthModalTab.REGISTER}>
-              <RegisterForm setShow={setShow} />
+              <RegisterForm />
             </TabPane>
           </TabContent>
         </div>

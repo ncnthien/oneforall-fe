@@ -1,9 +1,6 @@
 import authApi from 'api/authApi'
 import { useAppDispatch } from 'app/hooks'
-import {
-  RegisterBody,
-  RegisterFormProps,
-} from 'components/Header/AuthModal/interface'
+import { RegisterBody } from 'components/Header/AuthModal/interface'
 import { getProfile } from 'features/Profile/Profile.slice'
 import {
   ErrorMessage,
@@ -15,6 +12,7 @@ import {
 } from 'formik'
 import { FormGroup } from 'reactstrap'
 import * as Yup from 'yup'
+import { setShow } from '../AuthModal.slice'
 import './RegisterForm.scss'
 
 const RegisterSchema = Yup.object().shape({
@@ -29,7 +27,7 @@ const RegisterSchema = Yup.object().shape({
     .required('Password is required'),
 })
 
-const RegisterForm: React.FC<RegisterFormProps> = ({ setShow }) => {
+const RegisterForm: React.FC = () => {
   const defaultRegisterForm: RegisterBody = {
     email: '',
     username: '',
@@ -53,7 +51,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ setShow }) => {
       localStorage.setItem(jwtTokenKey, token)
       dispatch(getProfile())
       actions.setSubmitting(false)
-      setShow(false)
+      dispatch(setShow(false))
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const takenEmailError = 'email has been taken'
