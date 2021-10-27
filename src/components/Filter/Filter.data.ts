@@ -56,7 +56,7 @@ const brandDropDown: Dropdown = {
     },
   ],
 }
-const priceDropDown: Dropdown = {
+export const priceDropDown: Dropdown = {
   id: 'price',
   name: 'Khoảng giá',
   items: [

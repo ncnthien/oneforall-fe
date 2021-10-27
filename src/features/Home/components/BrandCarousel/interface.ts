@@ -1,10 +1,6 @@
-export type Brand = {
-  name: string
-  path: string
-  url: string
-}
+import { HomeBrand } from 'features/Home/pages/Main/interface'
 
 export interface IBrandCarousel {
-  brandList: Brand[]
+  brandList: HomeBrand[]
   isSlide?: boolean
 }

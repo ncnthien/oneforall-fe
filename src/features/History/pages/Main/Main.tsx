@@ -41,6 +41,24 @@ const Main: React.FC = () => {
 
     return date.toLocaleDateString()
   }
+
+  const renderStatus = (
+    status: 'pending' | 'claimed' | 'delivering' | 'delivered'
+  ) => {
+    if (status === 'pending') {
+      return 'Chờ xác nhận'
+    }
+    if (status === 'claimed') {
+      return 'Đã xác nhận'
+    }
+    if (status === 'delivering') {
+      return 'Đang giao hàng'
+    }
+    if (status === 'delivered') {
+      return 'Đã giao hàng'
+    }
+  }
+
   return (
     <div className='history'>
       <div className='container'>
@@ -92,7 +110,7 @@ const Main: React.FC = () => {
                             .toLocaleString()}{' '}
                           VND
                         </td>
-                        <td>{order.status}</td>
+                        <td>{renderStatus(order.status)}</td>
                       </tr>
                     )
                   })}

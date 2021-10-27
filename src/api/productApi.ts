@@ -44,7 +44,6 @@ export interface ProductData {
 export const productApi = {
   get: (params: ProductParams): Promise<AxiosResponse<ProductData>> => {
     const url = '/product'
-    console.log(params)
     return axiosClient.get<ProductData>(url, {
       params: params,
     })
