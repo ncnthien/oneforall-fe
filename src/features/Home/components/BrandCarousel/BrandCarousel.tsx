@@ -11,7 +11,7 @@ const BrandCarousel: React.FC<IBrandCarousel> = ({ brandList, isSlide }) => {
     return brandList.map(brand => (
       <Link
         key={brand._id}
-        to={`/${brand.value}`}
+        to={`/brand/${brand.value}`}
         className='carousel__item me-2'
       >
         <img src={brand.logo} alt={brand.value} className='w-100' />
